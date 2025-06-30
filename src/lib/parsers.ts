@@ -18,18 +18,13 @@ export async function parseResults(
   try {
     const object = convert.xml2js(xml, { compact: true }) as SearchResultXml;
 
-    console.log(JSON.stringify(object, null, 2));
+    const { item: items } = object.items;
 
-    const elements = object.elements?.[0]?.elements || [];
-
-    for (const element of elements) {
-      const title = element.elements.find(({ name }) => name === 'name');
-
-      if (!title) return;
-
+    for (const item of items) {
       resultsArray.push({
-        bggId: element.attributes.id,
-        title: title.attributes.value,
+        bggId: item._attributes.id,
+        title: item.name._attributes.value,
+        type: item._attributes.type,
       });
     }
   } catch (error) {

@@ -4,6 +4,7 @@ export type BggDetailsResponse = GameDetails;
 export interface SearchResult {
   bggId: string;
   title: string;
+  type: ThingType;
 }
 export interface GameDetails {
   bggId?: string;
@@ -16,20 +17,19 @@ export interface GameDetails {
 }
 
 export interface SearchResultXml {
-  elements: {
-    elements: {
-      attributes: {
+  items: {
+    item: {
+      _attributes: {
         id: string;
         type: ThingType;
       };
-      elements: {
-        name: string;
-        attributes: {
+      name: {
+        _attributes: {
           value: string;
         };
-      }[];
+      };
     }[];
-  }[];
+  };
 }
 
 export interface GameDetailsXml {
