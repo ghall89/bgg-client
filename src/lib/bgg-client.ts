@@ -1,6 +1,6 @@
 import { tryCatch } from 'try-catcher-ts';
 
-import { SearchResult, GameDetails } from './types';
+import { SearchResult, GameDetails, ThingType } from './types';
 import { parseResults, parseGameData } from './parsers';
 import { getRequest } from './api';
 
@@ -9,8 +9,9 @@ import { getRequest } from './api';
  */
 export async function search(
   query: string,
+  type: ThingType = 'boardgame',
 ): Promise<SearchResult[] | undefined> {
-  const path = `/xmlapi2/search?query=${query}`;
+  const path = `/xmlapi2/search?query=${query}&type=${type}`;
 
   const response = await tryCatch(
     () => getRequest(path, parseResults),
@@ -24,7 +25,7 @@ export async function search(
  * Fetch a board game from BGG API by its ID and return the response
  */
 export async function gameById(id: string): Promise<GameDetails | undefined> {
-  const path = `/xmlapi/boardgame/${id}`;
+  const path = `/xmlapi2/thing?id=${id}`;
 
   const response = await tryCatch(
     () => getRequest(path, parseGameData),

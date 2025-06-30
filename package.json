@@ -6,23 +6,26 @@
     "type": "git",
     "url": "git+https://github.com/ghall89/bgg-client"
   },
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup index.ts --format cjs,esm --dts",
-    "lint": "npx tsc"
+    "lint": "npx tsc",
+    "test:search": "tsx tests/search.test.ts",
+    "test:game-by-id": "tsx tests/game-by-id.test.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
-    "try-catcher-ts": "^0.1.0",
+    "try-catcher-ts": "^0.1.1",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@swc/core": "^1.12.7",
     "@types/node": "^20",
-    "globals": "^16.2.0",
     "prettier": "^3.5.3",
     "tsup": "^8.5.0",
     "tsx": "^4.19.3",

@@ -15,11 +15,12 @@ export interface GameDetails {
   avgPlaytime?: number;
 }
 
-export interface BoardGameXml {
+export interface SearchResultXml {
   elements: {
     elements: {
       attributes: {
         id: string;
+        type: ThingType;
       };
       elements: {
         name: string;
@@ -32,42 +33,100 @@ export interface BoardGameXml {
 }
 
 export interface GameDetailsXml {
-  boardgames: {
-    boardgame: {
-      _attributes: {
-        objectid: string;
+  items: {
+    item: {
+      '_attributes': {
+        type: string;
+        id: string;
       };
-      name:
-        | {
-            _attributes: {
-              primary?: 'true' | 'false';
-            };
-            _text: string;
-          }[]
-        | {
-            _attributes: {
-              primary?: 'true' | 'false';
-            };
-            _text: string;
+      'thumbnail': {
+        _text: string;
+      };
+      'image': {
+        _text: string;
+      };
+      'name': {
+        _attributes: {
+          type?: 'primary' | 'alternate';
+          value: string;
+        };
+      }[];
+      'description': {
+        _text: string;
+      };
+      'yearpublished': {
+        _attributes: {
+          value: string;
+        };
+      };
+      'minplayers': {
+        _attributes: {
+          value: string;
+        };
+      };
+      'maxplayers': {
+        _attributes: {
+          value: string;
+        };
+      };
+      'playingtime': {
+        _attributes: {
+          value: string;
+        };
+      };
+      'minplaytime': {
+        _attributes: {
+          value: string;
+        };
+      };
+      'maxplaytime': {
+        _attributes: {
+          value: string;
+        };
+      };
+      'minage': {
+        _attributes: {
+          value: string;
+        };
+      };
+      'poll-summary': {
+        name: string;
+        title: string;
+        result: {
+          _attributes: {
+            name: string;
+            value: string;
           };
-      thumbnail: {
-        _text: string;
-      };
-      image: {
-        _text: string;
-      };
-      description: {
-        _text: string;
-      };
-      minplayers: {
-        _text: string;
-      };
-      maxplayers: {
-        _text: string;
-      };
-      playingtime: {
-        _text: string;
+        }[];
+      }[];
+      'link': {
+        _attributes: {
+          type: LinkType;
+          id: string;
+          value: string;
+        };
       };
     };
   };
 }
+
+enum ThingTypeEnum {
+  boardgame,
+  boardgameexpansion,
+}
+
+export type ThingType = keyof typeof ThingTypeEnum;
+
+enum LinkTypeEnum {
+  boardgamecategory,
+  boardgamemechanic,
+  boardgamefamily,
+  boardgameexpansion,
+  boardgameaccessory,
+  boardgameimplementation,
+  boardgamedesigner,
+  boardgameartist,
+  boardgamepublisher,
+}
+
+export type LinkType = keyof typeof LinkTypeEnum;

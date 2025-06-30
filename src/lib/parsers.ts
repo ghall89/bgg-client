@@ -3,7 +3,7 @@ import convert from 'xml-js';
 import {
   BggDetailsResponse,
   BggSearchResponse,
-  BoardGameXml,
+  SearchResultXml,
   GameDetailsXml,
 } from './types';
 
@@ -16,7 +16,9 @@ export async function parseResults(
   const resultsArray: BggSearchResponse = [];
 
   try {
-    const object = convert.xml2js(xml) as BoardGameXml;
+    const object = convert.xml2js(xml, { compact: true }) as SearchResultXml;
+
+    console.log(JSON.stringify(object, null, 2));
 
     const elements = object.elements?.[0]?.elements || [];
 
@@ -44,29 +46,21 @@ export async function parseGameData(xml: string): Promise<BggDetailsResponse> {
   let gameData: BggDetailsResponse;
 
   try {
-    const result = convert.xml2js(xml, { compact: true }) as GameDetailsXml;
+    const object = convert.xml2js(xml, { compact: true }) as GameDetailsXml;
 
     const {
-      boardgames: { boardgame },
-    } = result;
+      items: { item },
+    } = object;
 
     gameData = {
-      bggId: boardgame?._attributes?.objectid,
-      title: Array.isArray(boardgame.name)
-        ? boardgame?.name?.find((name) => name._attributes?.primary === 'true')
-            ?._text
-        : boardgame.name?._text,
-      img: boardgame?.image?._text,
-      description: boardgame?.description?._text,
-      minPlayers: boardgame?.minplayers?._text
-        ? Number(boardgame.minplayers._text)
-        : undefined,
-      maxPlayers: boardgame?.maxplayers?._text
-        ? Number(boardgame.maxplayers._text)
-        : undefined,
-      avgPlaytime: boardgame?.playingtime?._text
-        ? Number(boardgame.playingtime._text)
-        : undefined,
+      bggId: item?._attributes?.id,
+      title: item?.name?.find((name) => name._attributes?.type === 'primary')
+        ?._attributes.value,
+      img: item?.image?._text,
+      description: item?.description?._text,
+      minPlayers: Number(item?.minplayers?._attributes?.value),
+      maxPlayers: Number(item.maxplayers?._attributes?.value),
+      avgPlaytime: Number(item.playingtime?._attributes?.value),
     };
   } catch (error) {
     throw error;
