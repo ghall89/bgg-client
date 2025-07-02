@@ -5,7 +5,10 @@ import {
   BggSearchResponse,
   SearchResultXml,
   GameDetailsXml,
+  PlayerCountPollResultXML,
+  PollResultXML,
 } from './types';
+import { it } from 'node:test';
 
 /**
  * Parses a BGG XML search response into a list of game search results.
@@ -48,14 +51,45 @@ export async function parseGameData(xml: string): Promise<BggDetailsResponse> {
     } = object;
 
     gameData = {
-      bggId: item?._attributes?.id,
-      title: item?.name?.find((name) => name._attributes?.type === 'primary')
-        ?._attributes.value,
-      img: item?.image?._text,
-      description: item?.description?._text,
+      bggId: item._attributes.id,
+      title:
+        item.name.find((name) => name._attributes?.type === 'primary')
+          ?._attributes.value || '',
+      img: item.image._text,
+      thumbnail: item.thumbnail._text,
+      description: item.description._text,
+      yearPublished: Number(item.yearpublished._attributes.value),
       minPlayers: Number(item?.minplayers?._attributes?.value),
       maxPlayers: Number(item.maxplayers?._attributes?.value),
       avgPlaytime: Number(item.playingtime?._attributes?.value),
+      minPlaytime: Number(item.minplaytime?._attributes?.value),
+      maxPlaytime: Number(item.maxplaytime?._attributes?.value),
+      minPlayerAge: Number(item.minage?._attributes?.value),
+      polls: item.poll.map((poll) =>
+        Array.isArray(poll.results)
+          ? {
+              name: poll._attributes.name,
+              results: poll.results.map((entry) => ({
+                players: Number(entry?._attributes?.numplayers),
+                results: entry.result.map((res) => ({
+                  value: res._attributes.value,
+                  votes: Number(res._attributes.numvotes),
+                })),
+              })),
+            }
+          : {
+              name: poll._attributes.name,
+              results: poll.results.result.map((res) => ({
+                value: res._attributes.value,
+                votes: Number(res._attributes.numvotes),
+              })),
+            },
+      ),
+      links: item.link.map((link) => ({
+        id: link._attributes.id,
+        type: link._attributes.type,
+        value: link._attributes.value,
+      })),
     };
   } catch (error) {
     throw error;
