@@ -1,6 +1,6 @@
 {
   "name": "bgg-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup index.ts --format cjs,esm --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "npx tsc",
     "test:search": "tsx tests/search.test.ts",
     "test:game-by-id": "tsx tests/game-by-id.test.ts"
