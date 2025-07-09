@@ -1,14 +1,12 @@
 import convert from 'xml-js';
+import { decode } from 'he';
 
 import {
   BggDetailsResponse,
   BggSearchResponse,
   SearchResultXml,
   GameDetailsXml,
-  PlayerCountPollResultXML,
-  PollResultXML,
 } from './types';
-import { it } from 'node:test';
 
 /**
  * Parses a BGG XML search response into a list of game search results.
@@ -57,7 +55,7 @@ export async function parseGameData(xml: string): Promise<BggDetailsResponse> {
           ?._attributes.value || '',
       img: item.image._text,
       thumbnail: item.thumbnail._text,
-      description: item.description._text,
+      description: decode(item.description._text),
       yearPublished: Number(item.yearpublished._attributes.value),
       minPlayers: Number(item?.minplayers?._attributes?.value),
       maxPlayers: Number(item.maxplayers?._attributes?.value),
