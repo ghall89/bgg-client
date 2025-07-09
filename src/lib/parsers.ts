@@ -18,7 +18,6 @@ export async function parseResults(
 
   try {
     const object = convert.xml2js(xml, { compact: true }) as SearchResultXml;
-    console.log(JSON.stringify(object, null, 2));
     const { item: items } = object.items;
 
     if (Array.isArray(items)) {
