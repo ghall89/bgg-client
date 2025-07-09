@@ -18,14 +18,22 @@ export async function parseResults(
 
   try {
     const object = convert.xml2js(xml, { compact: true }) as SearchResultXml;
-
+    console.log(JSON.stringify(object, null, 2));
     const { item: items } = object.items;
 
-    for (const item of items) {
+    if (Array.isArray(items)) {
+      for (const item of items) {
+        resultsArray.push({
+          bggId: item._attributes.id,
+          title: item.name._attributes.value,
+          type: item._attributes.type,
+        });
+      }
+    } else {
       resultsArray.push({
-        bggId: item._attributes.id,
-        title: item.name._attributes.value,
-        type: item._attributes.type,
+        bggId: items._attributes.id,
+        title: items.name._attributes.value,
+        type: items._attributes.type,
       });
     }
   } catch (error) {

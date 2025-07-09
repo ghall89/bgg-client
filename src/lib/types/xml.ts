@@ -2,17 +2,19 @@ import type { ThingType, LinkType } from './enums';
 
 export interface SearchResultXml {
   items: {
-    item: {
-      _attributes: {
-        id: string;
-        type: ThingType;
-      };
-      name: {
-        _attributes: {
-          value: string;
-        };
-      };
-    }[];
+    item: SearchResultItemXml[] | SearchResultItemXml;
+  };
+}
+
+export interface SearchResultItemXml {
+  _attributes: {
+    id: string;
+    type: ThingType;
+  };
+  name: {
+    _attributes: {
+      value: string;
+    };
   };
 }
 
