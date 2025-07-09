@@ -16,6 +16,7 @@ bun add bgg-client
 ```
 
 ## 🚀 Usage
+
 ```ts
 import { search, gameById } from 'bgg-client';
 
@@ -34,7 +35,7 @@ Search for games by name using the BGG API.
 | Name  | Type                     | Description                                            |
 | ----- | ------------------------ | ------------------------------------------------------ |
 | query | `string`                 | Search term (e.g. `"Catan"`)                           |
-| type  | `ThingType` *(optional)* | Type of BGG "thing" to search (default: `'boardgame'`) |
+| type  | `ThingType` _(optional)_ | Type of BGG "thing" to search (default: `'boardgame'`) |
 
 #### Returns
 
@@ -162,4 +163,5 @@ async function fetchGameData(name: string) {
 ## 🔗 Dependencies
 
 - [xml-js](https://github.com/nashwaan/xml-js)
+- [he](https://github.com/mathiasbynens/he)
 - [try-catcher-ts](https://github.com/ghall89/try-catcher-ts)

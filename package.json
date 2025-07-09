@@ -1,6 +1,6 @@
 {
   "name": "bgg-client",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -20,11 +20,13 @@
   "license": "ISC",
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
+    "he": "^1.2.0",
     "try-catcher-ts": "^0.1.1",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@swc/core": "^1.12.7",
+    "@types/he": "^1.2.3",
     "@types/node": "^20",
     "prettier": "^3.5.3",
     "tsup": "^8.5.0",
