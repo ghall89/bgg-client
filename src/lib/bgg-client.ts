@@ -9,9 +9,11 @@ import { getRequest } from './api';
  */
 export async function search(
   query: string,
-  type: ThingType = 'boardgame',
+  type: ThingType | ThingType[] = 'boardgame',
 ): Promise<SearchResult[] | undefined> {
-  const path = `/xmlapi2/search?query=${query}&type=${type}`;
+  const thingType = Array.isArray(type) ? type.join(',') : type;
+
+  const path = `/xmlapi2/search?query=${query}&type=${thingType}`;
 
   const response = await tryCatch(
     () => getRequest(path, parseResults),
