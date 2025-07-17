@@ -9,25 +9,38 @@ import { getRequest } from './api';
  */
 export async function search(
   query: string,
-  type: ThingType | ThingType[] = 'boardgame',
-): Promise<SearchResult[] | undefined> {
-  const thingType = Array.isArray(type) ? type.join(',') : type;
-
-  const path = `/xmlapi2/search?query=${query}&type=${thingType}`;
+  options?: {
+    type?: ThingType | ThingType[];
+    exact?: boolean;
+  },
+): Promise<SearchResult[]> {
+  const path = createUrlWithParams(`/xmlapi2/search?query=${query}`, options);
 
   const response = await tryCatch(
     () => getRequest(path, parseResults),
     'Error searching BGG API',
   );
 
-  return response;
+  return response ?? [];
 }
 
 /**
  * Fetch a board game from BGG API by its ID and return the response
  */
-export async function gameById(id: string): Promise<GameDetails | undefined> {
-  const path = `/xmlapi2/thing?id=${id}`;
+export async function gameById(
+  id: string,
+  options?: {
+    type?: ThingType | ThingType[];
+    versions?: boolean;
+    videos?: boolean;
+    stats?: boolean;
+    comments?: boolean;
+    ratingcomments?: boolean;
+  },
+): Promise<GameDetails | undefined> {
+  const path = createUrlWithParams(`/xmlapi2/thing?id=${id}`, options);
+
+  console.log(path);
 
   const response = await tryCatch(
     () => getRequest(path, parseGameData),
@@ -35,4 +48,29 @@ export async function gameById(id: string): Promise<GameDetails | undefined> {
   );
 
   return response;
+}
+
+function createUrlWithParams(
+  path: string,
+  options: { [k: string]: any } = {},
+): string {
+  const pathArray: string[] = [path];
+
+  console.log(options);
+
+  for (const key of Object.keys(options)) {
+    const value = options[key];
+
+    if (value === undefined || value === null) continue;
+
+    if (typeof value === 'boolean') {
+      pathArray.push(`${key}=${value ? '1' : '0'}`);
+    } else if (Array.isArray(value)) {
+      pathArray.push(`${key}=${encodeURIComponent(value.join(','))}`);
+    } else {
+      pathArray.push(`${key}=${encodeURIComponent(value)}`);
+    }
+  }
+
+  return pathArray.join('&');
 }
