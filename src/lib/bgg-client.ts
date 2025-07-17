@@ -14,7 +14,10 @@ export async function search(
     exact?: boolean;
   },
 ): Promise<SearchResult[]> {
-  const path = createUrlWithParams(`/xmlapi2/search?query=${query}`, options);
+  const path = createUrlWithParams(
+    `/xmlapi2/search?query=${encodeURIComponent(query)}`,
+    options,
+  );
 
   const response = await tryCatch(
     () => getRequest(path, parseResults),
@@ -31,16 +34,14 @@ export async function gameById(
   id: string,
   options?: {
     type?: ThingType | ThingType[];
-    versions?: boolean;
-    videos?: boolean;
+    // versions?: boolean;
+    // videos?: boolean;
     stats?: boolean;
-    comments?: boolean;
-    ratingcomments?: boolean;
+    // comments?: boolean;
+    // ratingcomments?: boolean;
   },
 ): Promise<GameDetails | undefined> {
   const path = createUrlWithParams(`/xmlapi2/thing?id=${id}`, options);
-
-  console.log(path);
 
   const response = await tryCatch(
     () => getRequest(path, parseGameData),
@@ -55,8 +56,6 @@ function createUrlWithParams(
   options: { [k: string]: any } = {},
 ): string {
   const pathArray: string[] = [path];
-
-  console.log(options);
 
   for (const key of Object.keys(options)) {
     const value = options[key];

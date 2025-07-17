@@ -23,12 +23,27 @@ export interface GameDetails {
   minPlayerAge?: number;
   polls: PollItem[];
   links: Link[];
+  stats?: {
+    ranks: RankItem[];
+    owned: number;
+    trading: number;
+    wanting: number;
+    wishing: number;
+    complexity: number;
+  };
 }
 
 interface Link {
   id: string;
   type: string;
   value: string;
+}
+
+interface RankItem {
+  type: string;
+  key: string;
+  name: string;
+  value: number;
 }
 
 interface PollItem {

@@ -11,11 +11,7 @@ export interface SearchResultItemXml {
     id: string;
     type: ThingType;
   };
-  name: {
-    _attributes: {
-      value: string;
-    };
-  };
+  name: ValueAttribute;
 }
 
 export interface GameDetailsXml {
@@ -40,41 +36,21 @@ export interface GameDetailsXml {
       description: {
         _text: string;
       };
-      yearpublished: {
-        _attributes: {
-          value: string;
-        };
-      };
-      minplayers: {
-        _attributes: {
-          value: string;
-        };
-      };
-      maxplayers: {
-        _attributes: {
-          value: string;
-        };
-      };
+      yearpublished: ValueAttribute;
+      minplayers: ValueAttribute;
+      maxplayers: ValueAttribute;
       playingtime: {
         _attributes: {
           value: string;
         };
       };
-      minplaytime: {
-        _attributes: {
-          value: string;
-        };
-      };
+      minplaytime: ValueAttribute;
       maxplaytime: {
         _attributes: {
           value: string;
         };
       };
-      minage: {
-        _attributes: {
-          value: string;
-        };
-      };
+      minage: ValueAttribute;
       poll: PollItemXML[];
       link: {
         _attributes: {
@@ -83,7 +59,46 @@ export interface GameDetailsXml {
           value: string;
         };
       }[];
+      statistics?: {
+        _attributes: {
+          page: string;
+        };
+        ratings: {
+          usersrated: ValueAttribute;
+          average: ValueAttribute;
+          bayesaverage: ValueAttribute;
+          ranks: {
+            rank: RankXml[];
+          };
+          stddev: ValueAttribute;
+          median: ValueAttribute;
+          owned: ValueAttribute;
+          trading: ValueAttribute;
+          wanting: ValueAttribute;
+          wishing: ValueAttribute;
+          numcomments: ValueAttribute;
+          numweights: ValueAttribute;
+          averageweight: ValueAttribute;
+        };
+      };
     };
+  };
+}
+
+interface ValueAttribute {
+  _attributes: {
+    value: string;
+  };
+}
+
+interface RankXml {
+  _attributes: {
+    type: string;
+    id: string;
+    name: string;
+    friendlyname: string;
+    value: string;
+    bayesaverage: string;
   };
 }
 
