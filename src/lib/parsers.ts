@@ -96,6 +96,27 @@ export async function parseGameData(xml: string): Promise<BggDetailsResponse> {
         value: link._attributes.value,
       })),
     };
+
+    if (item?.statistics) {
+      const { ratings } = item.statistics;
+
+      gameData = {
+        ...gameData,
+        stats: {
+          ranks: ratings.ranks.rank.map(({ _attributes: rank }) => ({
+            type: rank.type,
+            key: rank.name,
+            name: rank.friendlyname,
+            value: Number(rank.value),
+          })),
+          owned: Number(ratings.owned._attributes.value),
+          trading: Number(ratings.trading._attributes.value),
+          wanting: Number(ratings.wanting._attributes.value),
+          wishing: Number(ratings.wishing._attributes.value),
+          complexity: Number(ratings.averageweight._attributes.value),
+        },
+      };
+    }
   } catch (error) {
     throw error;
   }
