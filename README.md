@@ -26,16 +26,25 @@ const game = await gameById('342942'); // Cascadia's BGG ID
 
 ## 🔧 API Reference
 
-### `search(query: string, type?: ThingType): Promise<SearchResult[] | undefined>`
+### `search(query: string, options?: object): Promise<SearchResult[] | undefined>`
 
-Search for games by name using the BGG API.
+Search for "things" by name using the BGG API.
 
 #### Parameters
 
-| Name  | Type                     | Description                                            |
-| ----- | ------------------------ | ------------------------------------------------------ |
-| query | `string`                 | Search term (e.g. `"Catan"`)                           |
-| type  | `ThingType` _(optional)_ | Type of BGG "thing" to search (default: `'boardgame'`) |
+| Name    | Type                | Description                  |
+| ------- | ------------------- | ---------------------------- |
+| query   | `string`            | Search term (e.g. `"Catan"`) |
+| options | `object` (optional) | Options for the BGG API call |
+
+#### Options
+
+These are the options that can be included in the `options` prop.
+
+| Name  | Type                   | Description                                                        |
+| ----- | ---------------------- | ------------------------------------------------------------------ |
+| type  | `string` or `string[]` | The type of "thing" you'd like to query for (example: `boardgame`) |
+| exact | `boolean`              | If `true`, return only exact matches                               |
 
 #### Returns
 
@@ -44,22 +53,35 @@ A Promise resolving to an array of `SearchResult` objects, or `undefined` if the
 #### Example
 
 ```ts
-const results = await search('Terraforming Mars');
+const results = await search('Terraforming Mars', {
+  exact: true,
+  type: 'boardgame',
+});
 // [
 //   { bggId: '167791', title: 'Terraforming Mars', type: 'boardgame' },
 //   ...
 // ]
 ```
 
-### `gameById(id: string): Promise<GameDetails | undefined>`
+### `gameById(id: string, options?: object): Promise<GameDetails | undefined>`
 
 Fetch detailed information about a game using its BGG ID.
 
 #### Parameters
 
-| Name | Type     | Description                       |
-| ---- | -------- | --------------------------------- |
-| id   | `string` | The numeric ID of the game on BGG |
+| Name    | Type     | Description                       |
+| ------- | -------- | --------------------------------- |
+| id      | `string` | The numeric ID of the game on BGG |
+| options | `object` | Options for the BGG API call      |
+
+#### Options
+
+These are the options that can be included in the `options` prop.
+
+| Name  | Type                   | Description                                                        |
+| ----- | ---------------------- | ------------------------------------------------------------------ |
+| type  | `string` or `string[]` | The type of "thing" you'd like to query for (example: `boardgame`) |
+| stats | `boolean`              | If `true`, return additional stats, like rankings, game complexity |
 
 #### Returns
 
@@ -102,6 +124,14 @@ interface GameDetails {
   minPlayerAge?: number;
   polls: PollItem[];
   links: Link[];
+  stats?: {
+    ranks: RankItem[];
+    owned: number;
+    trading: number;
+    wanting: number;
+    wishing: number;
+    complexity: number;
+  };
 }
 ```
 
@@ -130,6 +160,19 @@ interface PollResult {
 }
 ```
 
+### `Rank Item`
+
+Represents community generated ranking information, like its overall BGG rank, its ranking among strategy games, etc.
+
+```ts
+interface RankItem {
+  type: string;
+  key: string;
+  name: string;
+  value: number;
+}
+```
+
 ### `Link`
 
 Represents BGG-related metadata, such as categories, mechanics, and expansions.
@@ -147,11 +190,11 @@ interface Link {
 ```ts
 import { search, gameById } from 'bgg-client';
 
-async function fetchGameData(name: string) {
+async function fetchGameData(name: string, { exact: true }) {
   const results = await search(name);
   if (!results || results.length === 0) return;
 
-  const game = await gameById(results[0].bggId);
+  const game = await gameById(results[0].bggId, { stats: true });
   if (!game) return;
 
   console.log(`${game.title} (${game.yearPublished})`);
