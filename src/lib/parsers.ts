@@ -11,9 +11,7 @@ import {
 /**
  * Parses a BGG XML search response into a list of game search results.
  */
-export async function parseResults(
-  xml: string,
-): Promise<BggSearchResponse | undefined> {
+export function parseResults(xml: string): BggSearchResponse | undefined {
   const resultsArray: BggSearchResponse = [];
 
   try {
@@ -45,7 +43,7 @@ export async function parseResults(
 /**
  * Parses a BGG XML board game response into structured game data.
  */
-export async function parseGameData(xml: string): Promise<BggDetailsResponse> {
+export function parseGameData(xml: string): BggDetailsResponse {
   let gameData: BggDetailsResponse;
 
   try {

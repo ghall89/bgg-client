@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+  <item type="boardgame" id="68448">
+    <thumbnail>
+      https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__thumb/img/BUOso8b0M1aUOkU80FWlhE8uuxc=/fit-in/200x150/filters:strip_icc()/pic7149798.jpg</thumbnail>
+    <image>
+      https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__original/img/jt70jJDZ1y1FWJs4ZQf5FI8APVY=/0x0/filters:format(jpeg)/pic7149798.jpg</image>
+
+    <name type="primary" sortindex="1" value="7 Wonders" />
+
+
+    <name type="alternate" sortindex="1" value="7 csoda" />
+
+    <name type="alternate" sortindex="1" value="7 Cudów Świata" />
+
+    <name type="alternate" sortindex="1" value="7 divů světa" />
+
+    <name type="alternate" sortindex="1" value="7 чудес" />
+
+    <name type="alternate" sortindex="1" value="7 สิ่งมหัศจรรย์" />
+
+    <name type="alternate" sortindex="1" value="7 원더스" />
+
+    <name type="alternate" sortindex="1" value="Τα 7 θαύματα του κόσμου" />
+
+    <name type="alternate" sortindex="1" value="七大奇蹟" />
+
+    <name type="alternate" sortindex="1" value="七大奇迹" />
+
+    <name type="alternate" sortindex="1" value="世界の七不思議" />
+
+    <description>You are the leader of one of the 7 great cities of the Ancient World. Gather
+      resources, develop commercial routes, and affirm your military supremacy. Build your city and
+      erect an architectural wonder which will transcend future times.&amp;#10;&amp;#10;7 Wonders
+      lasts three ages. In each age, players receive seven cards from a particular deck, choose one
+      of those cards, then pass the remainder to an adjacent player. Players reveal their cards
+      simultaneously, paying resources if needed or collecting resources or interacting with other
+      players in various ways. (Players have individual boards with special powers on which to
+      organize their cards, and the boards are double-sided). Each player then chooses another card
+      from the deck they were passed, and the process repeats until players have six cards in play
+      from that age. After three ages, the game ends.&amp;#10;&amp;#10;In essence, 7 Wonders is a
+      card development game. Some cards have immediate effects, while others provide bonuses or
+      upgrades later in the game. Some cards provide discounts on future purchases. Some provide
+      military strength to overpower your neighbors and others give nothing but victory points. Each
+      card is played immediately after being drafted, so you'll know which cards your neighbor is
+      receiving and how her choices might affect what you've already built up. Cards are passed
+      left-right-left over the three ages, so you need to keep an eye on the neighbors in both
+      directions.&amp;#10;&amp;#10;Though the box of earlier editions is listed as being for
+      3&amp;ndash;7 players, there is an official 2-player variant included in the
+      instructions.&amp;#10;&amp;#10;</description>
+    <yearpublished value="2010" />
+    <minplayers value="2" />
+    <maxplayers value="7" />
+    <poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="2512">
+
+      <results numplayers="1">
+        <result value="Best" numvotes="4" />
+        <result value="Recommended" numvotes="17" />
+        <result value="Not Recommended" numvotes="1548" />
+      </results>
+
+      <results numplayers="2">
+        <result value="Best" numvotes="118" />
+        <result value="Recommended" numvotes="397" />
+        <result value="Not Recommended" numvotes="1350" />
+      </results>
+
+      <results numplayers="3">
+        <result value="Best" numvotes="527" />
+        <result value="Recommended" numvotes="1321" />
+        <result value="Not Recommended" numvotes="245" />
+      </results>
+
+      <results numplayers="4">
+        <result value="Best" numvotes="1334" />
+        <result value="Recommended" numvotes="837" />
+        <result value="Not Recommended" numvotes="48" />
+      </results>
+
+      <results numplayers="5">
+        <result value="Best" numvotes="1210" />
+        <result value="Recommended" numvotes="889" />
+        <result value="Not Recommended" numvotes="63" />
+      </results>
+
+      <results numplayers="6">
+        <result value="Best" numvotes="548" />
+        <result value="Recommended" numvotes="1271" />
+        <result value="Not Recommended" numvotes="183" />
+      </results>
+
+      <results numplayers="7">
+        <result value="Best" numvotes="451" />
+        <result value="Recommended" numvotes="1188" />
+        <result value="Not Recommended" numvotes="327" />
+      </results>
+
+      <results numplayers="7+">
+        <result value="Best" numvotes="30" />
+        <result value="Recommended" numvotes="112" />
+        <result value="Not Recommended" numvotes="1052" />
+      </results>
+    </poll>
+    <poll-summary name="suggested_numplayers" title="User Suggested Number of Players">
+      <result name="bestwith" value="Best with 4–5 players" />
+      <result name="recommmendedwith" value="Recommended with 3–7 players" />
+    </poll-summary>
+    <playingtime value="30" />
+    <minplaytime value="30" />
+    <maxplaytime value="30" />
+    <minage value="10" />
+    <poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="561">
+      <results>
+        <result value="2" numvotes="0" />
+        <result value="3" numvotes="0" />
+        <result value="4" numvotes="1" />
+        <result value="5" numvotes="1" />
+        <result value="6" numvotes="23" />
+        <result value="8" numvotes="156" />
+        <result value="10" numvotes="227" />
+        <result value="12" numvotes="126" />
+        <result value="14" numvotes="23" />
+        <result value="16" numvotes="3" />
+        <result value="18" numvotes="1" />
+        <result value="21 and up" numvotes="0" />
+      </results>
+    </poll>
+    <poll name="language_dependence" title="Language Dependence" totalvotes="408">
+
+      <results>
+        <result level="1" value="No necessary in-game text" numvotes="313" />
+        <result level="2" value="Some necessary text - easily memorized or small crib sheet"
+          numvotes="90" />
+        <result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="4" />
+        <result level="4" value="Extensive use of text - massive conversion needed to be playable"
+          numvotes="1" />
+        <result level="5" value="Unplayable in another language" numvotes="0" />
+      </results>
+    </poll>
+
+
+    <link type="boardgamecategory" id="1050" value="Ancient" />
+
+
+    <link type="boardgamecategory" id="1002" value="Card Game" />
+
+
+    <link type="boardgamecategory" id="1029" value="City Building" />
+
+
+    <link type="boardgamecategory" id="1015" value="Civilization" />
+
+
+    <link type="boardgamecategory" id="1021" value="Economic" />
+
+
+    <link type="boardgamemechanic" id="2984" value="Closed Drafting" />
+
+
+    <link type="boardgamemechanic" id="2875" value="End Game Bonuses" />
+
+
+    <link type="boardgamemechanic" id="2040" value="Hand Management" />
+
+
+    <link type="boardgamemechanic" id="2981" value="Melding and Splaying" />
+
+
+    <link type="boardgamemechanic" id="3099" value="Multi-Use Cards" />
+
+
+    <link type="boardgamemechanic" id="3104" value="Neighbor Scope" />
+
+
+    <link type="boardgamemechanic" id="2846" value="Once-Per-Game Abilities" />
+
+
+    <link type="boardgamemechanic" id="2823" value="Score-and-Reset Game" />
+
+
+    <link type="boardgamemechanic" id="2004" value="Set Collection" />
+
+
+    <link type="boardgamemechanic" id="2020" value="Simultaneous Action Selection" />
+
+
+    <link type="boardgamemechanic" id="3100" value="Tags" />
+
+
+    <link type="boardgamemechanic" id="2849" value="Tech Trees / Tech Tracks" />
+
+
+    <link type="boardgamemechanic" id="2015" value="Variable Player Powers" />
+
+
+    <link type="boardgamemechanic" id="2897" value="Variable Set-up" />
+
+
+    <link type="boardgamefamily" id="27524" value="Ancient: Babylon" />
+
+
+    <link type="boardgamefamily" id="72535" value="Ancient: Egypt" />
+
+
+    <link type="boardgamefamily" id="52373" value="Ancient: Greece" />
+
+
+    <link type="boardgamefamily" id="77906" value="Category: Dized Tutorial" />
+
+
+    <link type="boardgamefamily" id="77012" value="Constructions: Pyramids" />
+
+
+    <link type="boardgamefamily" id="111038" value="Constructions: The Hanging Gardens of Babylon" />
+
+
+    <link type="boardgamefamily" id="70360" value="Digital Implementations: Board Game Arena" />
+
+
+    <link type="boardgamefamily" id="76458" value="Digital Implementations: BrettspielWelt" />
+
+
+    <link type="boardgamefamily" id="78432" value="Digital Implementations: Google Play" />
+
+
+    <link type="boardgamefamily" id="17552" value="Game: 7 Wonders" />
+
+
+    <link type="boardgamefamily" id="71181" value="Mechanism: Artificial Player" />
+
+
+    <link type="boardgamefamily" id="27646" value="Mechanism: Tableau Building" />
+
+
+    <link type="boardgamefamily" id="109134" value="Misc: BGG Hall of Fame" />
+
+
+    <link type="boardgamefamily" id="105030" value="Misc: Dice Tower Hall of Fame" />
+
+
+    <link type="boardgamefamily" id="78198" value="Misc: Watch It Played How To Videos" />
+
+
+    <link type="boardgameexpansion" id="447859"
+      value="7 Wonders (Second Edition): 萬里長城 (7 Wonders (Second Edition): The Great Wall)" />
+
+
+    <link type="boardgameexpansion" id="247315" value="7 Wonders: Armada" />
+
+
+    <link type="boardgameexpansion" id="262276" value="7 Wonders: Armada – Siracusa" />
+
+
+    <link type="boardgameexpansion" id="154638" value="7 Wonders: Babel" />
+
+
+    <link type="boardgameexpansion" id="110308" value="7 Wonders: Catan" />
+
+
+    <link type="boardgameexpansion" id="111661" value="7 Wonders: Cities" />
+
+
+    <link type="boardgameexpansion" id="231168" value="7 Wonders: Cities Anniversary Pack" />
+
+
+    <link type="boardgameexpansion" id="368780" value="7 Wonders: Companion App" />
+
+
+    <link type="boardgameexpansion" id="378839" value="7 Wonders: Edifice" />
+
+
+    <link type="boardgameexpansion" id="92539" value="7 Wonders: Leaders" />
+
+
+    <link type="boardgameexpansion" id="130236" value="7 Wonders: Leaders – Esteban" />
+
+
+    <link type="boardgameexpansion" id="127838" value="7 Wonders: Leaders – Louis" />
+
+
+    <link type="boardgameexpansion" id="166329" value="7 Wonders: Leaders – Nimrod" />
+
+
+    <link type="boardgameexpansion" id="99315" value="7 Wonders: Leaders – Stevie" />
+
+
+    <link type="boardgameexpansion" id="156119" value="7 Wonders: Leaders – Wil Promo Card" />
+
+
+    <link type="boardgameexpansion" id="231167" value="7 Wonders: Leaders Anniversary Pack" />
+
+
+    <link type="boardgameexpansion" id="83445" value="7 Wonders: Manneken Pis" />
+
+
+    <link type="boardgameexpansion" id="133993" value="7 Wonders: Wonder Pack" />
+
+
+    <link type="boardgameexpansion" id="164649" value="Collection (fan expansion for 7 Wonders)" />
+
+
+    <link type="boardgameexpansion" id="140098" value="Empires (fan expansion for 7 Wonders)" />
+
+
+    <link type="boardgameexpansion" id="138187" value="Game Wonders (fan expansion for 7 Wonders)" />
+
+
+    <link type="boardgameexpansion" id="134849" value="Lost Wonders (fan expansion for 7 Wonders)" />
+
+
+    <link type="boardgameexpansion" id="329310" value="Modern Wonders (fan expansion for 7 Wonders)" />
+
+
+    <link type="boardgameexpansion" id="131947"
+      value="More Wonders... (fan expansion for 7 Wonders)" />
+
+
+    <link type="boardgameexpansion" id="132146" value="Myths (fan expansion for 7 Wonders)" />
+
+
+    <link type="boardgameexpansion" id="164648" value="Ruins (fan expansion for 7 Wonders)" />
+
+
+    <link type="boardgameexpansion" id="164647" value="Sailors (fan expansion for 7 Wonders)" />
+
+
+    <link type="boardgameaccessory" id="339391" value="7 Wonders: Eurohell Design Coin-Sleeves" />
+
+
+    <link type="boardgameaccessory" id="173357" value="7 Wonders: Art Pack" />
+
+
+    <link type="boardgameaccessory" id="270431" value="7 Wonders: Broken Token Organizer" />
+
+
+    <link type="boardgameaccessory" id="344432" value="7 Wonders: CN Tower Alternate Art Promo Card" />
+
+
+    <link type="boardgameaccessory" id="309365" value="7 Wonders: e-Raptor Insert" />
+
+
+    <link type="boardgameaccessory" id="266242" value="7 Wonders: Folded Space Insert" />
+
+
+    <link type="boardgameaccessory" id="272080" value="7 Wonders: GameGuard Organizer" />
+
+
+    <link type="boardgameaccessory" id="228574" value="7 Wonders: Gaming Trunk Organizer" />
+
+
+    <link type="boardgameaccessory" id="329170" value="7 Wonders: Geekmod Insert" />
+
+
+    <link type="boardgameaccessory" id="272020" value="7 Wonders: Go7 Insert" />
+
+
+    <link type="boardgameaccessory" id="326745" value="7 Wonders: Laserox Wooden Wonder Insert" />
+
+
+    <link type="boardgameaccessory" id="271277"
+      value="7 Wonders: Leaders – Linus Alternate Art Card" />
+
+
+    <link type="boardgameaccessory" id="364784"
+      value="7 Wonders: Leaders – Moedas &amp; Co. Metal Coins" />
+
+
+    <link type="boardgameaccessory" id="231231"
+      value="7 Wonders: Leaders – Phryne Alternate Art Card" />
+
+
+    <link type="boardgameaccessory" id="196929" value="7 Wonders: Metal Coins" />
+
+
+    <link type="boardgameaccessory" id="364783" value="7 Wonders: Moedas &amp; Co. Metal Coins" />
+
+
+    <link type="boardgameaccessory" id="199216" value="7 Wonders: Palace Alternate Art Promo Card" />
+
+
+    <link type="boardgameaccessory" id="158795" value="7 Wonders: Playmat" />
+
+
+    <link type="boardgameaccessory" id="188869" value="7 Wonders: Repos Production Playmat" />
+
+
+    <link type="boardgameaccessory" id="378753" value="7 Wonders: Spielmaterial.de Upgrade" />
+
+
+    <link type="boardgameaccessory" id="271273" value="7 Wonders: The Game Doctors Insert" />
+
+
+    <link type="boardgameaccessory" id="348557" value="7 Wonders: The GiftForge Insert" />
+
+
+    <link type="boardgameaccessory" id="444535" value="7 Wonders: Tokens Garden Metal Coins" />
+
+
+    <link type="boardgameaccessory" id="271750" value="7 Wonders: Tower Rex Organizer" />
+
+
+    <link type="boardgameaccessory" id="270441"
+      value="7 Wonders: Wondrous Organizer – Extra Dividers" />
+
+
+    <link type="boardgameimplementation" id="316377" value="7 Wonders (Second Edition)" />
+
+
+    <link type="boardgameimplementation" id="173346" value="7 Wonders Duel" />
+
+
+    <link type="boardgameimplementation" id="346703" value="7 Wonders: Architects" />
+
+
+    <link type="boardgamedesigner" id="9714" value="Antoine Bauza" />
+
+
+    <link type="boardgameartist" id="62528" value="Dimitri Chappuis" />
+
+
+    <link type="boardgameartist" id="12016" value="Miguel Coimbra" />
+
+
+    <link type="boardgameartist" id="100254" value="Etienne Hebinger" />
+
+
+    <link type="boardgameartist" id="89045" value="Cyril Nouvel" />
+
+
+    <link type="boardgamepublisher" id="4384" value="Repos Production" />
+
+
+    <link type="boardgamepublisher" id="23043" value="ADC Blackfire Entertainment" />
+
+
+    <link type="boardgamepublisher" id="15889" value="Asterion Press" />
+
+
+    <link type="boardgamepublisher" id="15605" value="Galápagos Jogos" />
+
+
+    <link type="boardgamepublisher" id="8820" value="Gém Klub Kft." />
+
+
+    <link type="boardgamepublisher" id="1391" value="Hobby Japan" />
+
+
+    <link type="boardgamepublisher" id="6214" value="Kaissa Chess &amp; Games" />
+
+
+    <link type="boardgamepublisher" id="8291" value="Korea Boardgames" />
+
+
+    <link type="boardgamepublisher" id="3218" value="Lautapelit.fi" />
+
+
+    <link type="boardgamepublisher" id="9325" value="Lifestyle Boardgames Ltd" />
+
+
+    <link type="boardgamepublisher" id="32395" value="NeoTroy Games" />
+
+
+    <link type="boardgamepublisher" id="7466" value="Rebel Sp. z o.o." />
+
+
+    <link type="boardgamepublisher" id="33998" value="Siam Board Games" />
+
+
+  </item>
+</items>

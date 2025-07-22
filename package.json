@@ -1,6 +1,6 @@
 {
   "name": "bgg-client",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -11,9 +11,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
+    "publish": "tsup src/index.ts --format cjs,esm --dts && npm publish",
     "lint": "npx tsc",
-    "test:search": "tsx tests/search.test.ts",
-    "test:game-by-id": "tsx tests/game-by-id.test.ts"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -27,8 +27,11 @@
   "devDependencies": {
     "@swc/core": "^1.12.7",
     "@types/he": "^1.2.3",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
+    "jest": "^30.0.4",
     "prettier": "^3.5.3",
+    "ts-jest": "^29.4.0",
     "tsup": "^8.5.0",
     "tsx": "^4.19.3",
     "typescript": "^5"

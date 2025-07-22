@@ -1,12 +1,8 @@
-import { search } from '../src/index';
+import { search } from '../src/lib/bgg-client';
 
-async function main() {
-  const games = await search('7 Wonders', {
-    type: ['boardgame', 'boardgameexpansion'],
-    exact: true,
+describe('search', () => {
+  test('Catan', async () => {
+    const result = await search('Catan');
+    expect(result).toBeDefined();
   });
-
-  console.log(JSON.stringify(games, null, 2));
-}
-
-main();
+});
