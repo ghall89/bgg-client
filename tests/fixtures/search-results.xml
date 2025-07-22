@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items total="2" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+  <item type="boardgame" id="379629">
+    <name type="primary" value="Knarr" />
+    <yearpublished value="2023" />
+  </item>
+  <item type="rpgitem" id="60418">
+    <name type="primary" value="Knarrende Häuser" />
+    <yearpublished value="1991" />
+  </item>
+</items>

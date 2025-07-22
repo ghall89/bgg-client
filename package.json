@@ -1,6 +1,6 @@
 {
   "name": "bgg-client",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -11,6 +11,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
+    "publish": "tsup src/index.ts --format cjs,esm --dts && npm publish",
     "lint": "npx tsc",
     "test": "jest"
   },
