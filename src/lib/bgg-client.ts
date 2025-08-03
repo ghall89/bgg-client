@@ -28,9 +28,9 @@ export async function search(
 }
 
 /**
- * Fetch a board game from BGG API by its ID and return the response
+ * Fetch a thing from BGG API by its ID and return the response
  */
-export async function gameById(
+export async function thing(
   id: string,
   options?: {
     type?: ThingType | ThingType[];
@@ -45,7 +45,18 @@ export async function gameById(
 
   const response = await tryCatch(
     () => getRequest(path, parseGameData),
-    'Error fetching game via API by ID',
+    'Error fetching thing by ID',
+  );
+
+  return response;
+}
+
+export async function hot(options?: { type?: ThingType | ThingType[] }) {
+  const path = createUrlWithParams('/xmlapi2/hot', options);
+
+  const response = await tryCatch(
+    () => getRequest(path, parseResults),
+    'Error fetching thing by ID',
   );
 
   return response;

@@ -14,6 +14,16 @@ export interface SearchResultItemXml {
   name: ValueAttribute;
 }
 
+export interface HotXml {
+  _attributes: {
+    id: string;
+    rank: string;
+  };
+  thumbnail: ValueAttribute;
+  name: ValueAttribute;
+  yearpublished: ValueAttribute;
+}
+
 export interface GameDetailsXml {
   items: {
     item: {

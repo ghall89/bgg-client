@@ -6,10 +6,11 @@ import {
   BggSearchResponse,
   SearchResultXml,
   GameDetailsXml,
+  HotXml,
 } from './types';
 
 /**
- * Parses a BGG XML search response into a list of game search results.
+ * Parses a BGG XML search response into a list of search results.
  */
 export function parseResults(xml: string): BggSearchResponse | undefined {
   const resultsArray: BggSearchResponse = [];
@@ -41,7 +42,16 @@ export function parseResults(xml: string): BggSearchResponse | undefined {
 }
 
 /**
- * Parses a BGG XML board game response into structured game data.
+ * Parses a BGG XML hot things response into a list of things.
+ */
+export function parseHot(xml: string) {
+  const resultsArray: BggSearchResponse = [];
+
+  const object = convert.xml2js(xml, { compact: true }) as HotXml;
+}
+
+/**
+ * Parses a BGG XML thing response into structured game data.
  */
 export function parseGameData(xml: string): BggDetailsResponse {
   let gameData: BggDetailsResponse;

@@ -8,6 +8,15 @@ export interface SearchResult {
   title: string;
   type: ThingType;
 }
+
+export interface HotItem {
+  bggId: string;
+  name: string;
+  rank: number;
+  thumbnail: string;
+  yearpublished: string;
+}
+
 export interface GameDetails {
   bggId: string;
   title: string;
