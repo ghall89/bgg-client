@@ -1,8 +1,8 @@
-import { hot } from '../src/lib/bgg-client';
+import bgg from '../src/index';
 
 describe('hot', () => {
   test('hot', async () => {
-    const result = await hot();
+    const result = await bgg.hot();
     expect(result).toBeDefined();
   });
 });
