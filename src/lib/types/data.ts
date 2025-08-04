@@ -3,15 +3,15 @@ import type { ThingType, LinkType } from './enums';
 export interface SearchResult {
   id: string;
   type: ThingType;
-  name: ValueAttribute;
+  name: StringValueAttribute;
 }
 
 export interface HotItem {
   id: string;
   rank: string;
-  thumbnail: ValueAttribute;
-  name: ValueAttribute;
-  yearpublished: ValueAttribute;
+  thumbnail: StringValueAttribute;
+  name: StringValueAttribute;
+  yearpublished: NumberValueAttribute;
 }
 
 export interface ThingDetails {
@@ -21,51 +21,66 @@ export interface ThingDetails {
   image: string;
   name: ThingName[];
   description: string;
-  yearpublished: ValueAttribute;
-  minplayers: ValueAttribute;
-  maxplayers: ValueAttribute;
+  yearpublished: NumberValueAttribute;
+  minplayers: NumberValueAttribute;
+  maxplayers: NumberValueAttribute;
   playingtime: {
     value: string;
   };
-  minplaytime: ValueAttribute;
-  maxplaytime: {
-    value: string;
-  };
-  minage: ValueAttribute;
+  minplaytime: NumberValueAttribute;
+  maxplaytime: NumberValueAttribute;
+  minage: NumberValueAttribute;
   poll: PollItem[];
-  link: {
-    type: LinkType;
-    id: string;
-    value: string;
-  }[];
+  link: LinkItem[];
   statistics?: {
     page: string;
     ratings: {
-      usersrated: ValueAttribute;
-      average: ValueAttribute;
-      bayesaverage: ValueAttribute;
+      usersrated: NumberValueAttribute;
+      average: NumberValueAttribute;
+      bayesaverage: NumberValueAttribute;
       ranks: {
         rank: Rank[];
       };
-      stddev: ValueAttribute;
-      median: ValueAttribute;
-      owned: ValueAttribute;
-      trading: ValueAttribute;
-      wanting: ValueAttribute;
-      wishing: ValueAttribute;
-      numcomments: ValueAttribute;
-      numweights: ValueAttribute;
-      averageweight: ValueAttribute;
+      stddev: NumberValueAttribute;
+      median: NumberValueAttribute;
+      owned: NumberValueAttribute;
+      trading: NumberValueAttribute;
+      wanting: NumberValueAttribute;
+      wishing: NumberValueAttribute;
+      numcomments: NumberValueAttribute;
+      numweights: NumberValueAttribute;
+      averageweight: NumberValueAttribute;
     };
+  };
+  versions?: {
+    item: {
+      thumbnail: string;
+      image: string;
+      link: LinkItem[];
+      name: ThingName[];
+      yearpublished: NumberValueAttribute;
+      productcode: StringValueAttribute;
+      width: NumberValueAttribute;
+      length: NumberValueAttribute;
+      depth: NumberValueAttribute;
+      weight: NumberValueAttribute;
+      type: string;
+      id: number;
+    }[];
   };
 }
 
-interface ValueAttribute {
+interface StringValueAttribute {
+  value: string;
+}
+
+interface NumberValueAttribute {
   value: string;
 }
 
 interface ThingName {
   type: 'primary' | 'alternate';
+  sortindex: number;
   value: string;
 }
 
@@ -91,4 +106,10 @@ export interface PollResult {
 export interface PollResultItem {
   value: string;
   numvotes: string;
+}
+
+export interface LinkItem {
+  type: LinkType;
+  id: string;
+  value: string;
 }
