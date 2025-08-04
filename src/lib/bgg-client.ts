@@ -12,8 +12,8 @@ import {
 export class BoardGameGeekClient {
   private api: ApiClient;
 
-  constructor() {
-    this.api = new ApiClient();
+  constructor(options?: { waitTime?: number }) {
+    this.api = new ApiClient({ waitTime: options?.waitTime });
   }
 
   /**
