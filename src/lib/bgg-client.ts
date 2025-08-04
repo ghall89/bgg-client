@@ -47,7 +47,13 @@ export class BoardGameGeekClient {
    * @param id - The unique identifier of the item to fetch.
    * @param options - Optional parameters for the request.
    * @param options.type - The type or types of the item (e.g., boardgame, boardgameexpansion).
-   * @param options.stats - If true, includes statistics in the response.
+   * @param options.versions - If true, includes version info in the response.
+   * @param options.videos - If true, includes videos in the response.
+   * @param options.stats - If true, includes ranking and rating stats in the response.
+   * @param options.comments - If true, includes comments in the response.
+   * @param options.ratingcomments - If true, includes comments with ratings in the response.
+   * @param options.pagesize - Set the number of records to return in paging. Minimum is 10, maximum is 100.
+   * @param options.page - Controls the page of data to see for historical info, comments, and ratings data.
    * @returns A promise that resolves to the item's details, or undefined if an error occurs.
    */
   async thing(
@@ -55,10 +61,12 @@ export class BoardGameGeekClient {
     options?: {
       type?: ThingType | ThingType[];
       versions?: boolean;
-      // videos?: boolean;
+      videos?: boolean;
       stats?: boolean;
-      // comments?: boolean;
-      // ratingcomments?: boolean;
+      comments?: boolean;
+      ratingcomments?: boolean;
+      pagesize?: number;
+      page?: number;
     },
   ): Promise<ThingDetails | undefined> {
     const response = await tryCatch(

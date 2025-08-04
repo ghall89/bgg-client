@@ -68,6 +68,20 @@ export interface ThingDetails {
       id: number;
     }[];
   };
+  videos?: {
+    video: {
+      id: number;
+      title: string;
+      category: string;
+      language: string;
+      username: string;
+      userid: number;
+      postdate: Date;
+    }[];
+  };
+  comments?: {
+    comment: Comment[];
+  };
 }
 
 interface StringValueAttribute {
@@ -111,5 +125,11 @@ export interface PollResultItem {
 export interface LinkItem {
   type: LinkType;
   id: string;
+  value: string;
+}
+
+export interface Comment {
+  username: string;
+  rating: number | 'N/A';
   value: string;
 }
