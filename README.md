@@ -27,15 +27,15 @@ By default, there is a rate limit of 1 request every 5 seconds to comply with th
 
 **`search(query, options)`**
 
-Calls the `search` endpoint, and returns an array of results.
+Calls the `search` endpoint to look up games by name. Returns an array of matching items, including board games, expansions, and other types. Supports options like `type` and `exact`.
 
 **`thing(id, options)`**
 
-Calls the `thing` endpoint, and returns an object.
+Calls the `thing` endpoint to fetch detailed information about a game or item by its BGG ID. Supports options like `stats` to include game statistics.
 
 **`hot(options)`**
 
-Calls the `hot` endpoint, and returns an array of results.
+Calls the `hot` endpoint to retrieve a list of trending or popular items. You can optionally specify a `type` (e.g., `boardgame`, `rpg`, `boardgameperson`) to filter results.
 
 ### Example
 
