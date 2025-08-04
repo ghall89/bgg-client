@@ -19,10 +19,7 @@ export interface ThingDetails {
   id: string;
   thumbnail: string;
   image: string;
-  name: {
-    type?: 'primary' | 'alternate';
-    value: string;
-  }[];
+  name: ThingName[];
   description: string;
   yearpublished: ValueAttribute;
   minplayers: ValueAttribute;
@@ -64,6 +61,11 @@ export interface ThingDetails {
 }
 
 interface ValueAttribute {
+  value: string;
+}
+
+interface ThingName {
+  type: 'primary' | 'alternate';
   value: string;
 }
 
