@@ -4,4 +4,4 @@ const bgg = new BoardGameGeekClient();
 
 export default bgg;
 
-export type { GameDetails, SearchResult } from './lib/types';
+export type { ThingDetails, HotItem, SearchResult } from './lib/types';

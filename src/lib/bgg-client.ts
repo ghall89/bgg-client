@@ -1,22 +1,28 @@
 import { tryCatch } from 'try-catcher-ts';
+import { XMLParser } from 'fast-xml-parser';
 
-import { SearchResult, GameDetails, ThingType } from './types';
-import { parseResults, parseGameData } from './parsers';
+import { SearchResult, ThingDetails, ThingType, HotItem } from './types';
 
 export class BoardGameGeekClient {
-  private BASE_URL = 'https://boardgamegeek.com/' as const;
+  private BASE_URL = 'https://boardgamegeek.com' as const;
   private APIV2_ENDPOINT = 'xmlapi2' as const;
 
   private lastCalled = 0;
   private waitTime = 5000;
 
+  private parser: XMLParser;
+
+  constructor() {
+    this.parser = new XMLParser({
+      ignoreAttributes: false,
+      attributeNamePrefix: '',
+    });
+  }
+
   /**
    * Handle request to the BGG API
    */
-  private async getRequest<T>(
-    path: string,
-    parseFn: (xml: string) => T,
-  ): Promise<T> {
+  private async getRequest<T>(path: string): Promise<T> {
     const now = Date.now();
     const timeSinceLast = now - this.lastCalled;
 
@@ -29,27 +35,23 @@ export class BoardGameGeekClient {
 
     const url = `${this.BASE_URL}/${this.APIV2_ENDPOINT}/${path}`;
 
-    console.info('URL:', url);
-
     const response = await fetch(url);
 
     if (!response?.ok) {
       throw new Error(`Response status: ${response?.status}`);
     }
 
-    return this.parseXmlResponse(response, parseFn);
+    return this.parseXmlResponse<T>(response);
   }
 
   /**
    * Parses an XML HTTP response using a custom parsing function.
    */
-  async parseXmlResponse<T>(
-    response: Response,
-    parseFn: (xml: string) => T,
-  ): Promise<T> {
-    const xml = await tryCatch(() => response.text(), 'Error parsing XML');
+  async parseXmlResponse<T>(response: Response): Promise<T> {
+    const xml = await response.text();
+    const object = this.parser.parse(xml, true);
 
-    return parseFn(xml as string);
+    return object.items.item as T;
   }
 
   private createUrlWithParams(
@@ -86,12 +88,12 @@ export class BoardGameGeekClient {
     },
   ): Promise<SearchResult[]> {
     const path = this.createUrlWithParams(
-      `/xmlapi2/search?query=${encodeURIComponent(query)}`,
+      `search?query=${encodeURIComponent(query)}`,
       options,
     );
 
     const response = await tryCatch(
-      () => this.getRequest(path, parseResults),
+      () => this.getRequest<SearchResult[]>(path),
       'Error searching BGG API',
     );
 
@@ -111,11 +113,11 @@ export class BoardGameGeekClient {
       // comments?: boolean;
       // ratingcomments?: boolean;
     },
-  ): Promise<GameDetails | undefined> {
+  ): Promise<ThingDetails | undefined> {
     const path = this.createUrlWithParams(`thing?id=${id}`, options);
 
     const response = await tryCatch(
-      () => this.getRequest(path, parseGameData),
+      () => this.getRequest<ThingDetails>(path),
       'Error fetching thing by ID',
     );
 
@@ -123,10 +125,10 @@ export class BoardGameGeekClient {
   }
 
   async hot(options?: { type?: ThingType | ThingType[] }) {
-    const path = this.createUrlWithParams('whot', options);
+    const path = this.createUrlWithParams('hot');
 
     const response = await tryCatch(
-      () => this.getRequest(path, parseResults),
+      () => this.getRequest<HotItem>(path),
       'Error fetching thing by ID',
     );
 
