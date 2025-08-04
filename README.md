@@ -1,6 +1,6 @@
 # 🎲 bgg-client
 
-A Typescript client for working with the [BoardGameGeek.com API](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
+A TypeScript client for working with the [BoardGameGeek.com API](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
 
 ## 📦 Install
 
@@ -17,194 +17,43 @@ bun add bgg-client
 
 ## 🚀 Usage
 
-```ts
-import { search, gameById } from 'bgg-client';
+Simply import the default `bgg` instance from `bgg-client` — a pre-instantiated (singleton) client with built-in rate limiting for the BoardGameGeek API.
 
-const results = await search('Cascadia');
-const game = await gameById('342942'); // Cascadia's BGG ID
-```
+If you'd prefer more control — for example, to customize rate limits or request behavior — you can import the `BoardGameGeekClient` class. For full manual access to any endpoint, you can use the lower-level `ApiClient` class.
 
-## 🔧 API Reference
+By default, there is a rate limit of 1 request every 5 seconds to comply with the BoardGameGeek API's suggested request rate. This can be adjusted by importing and instantiating either the `BoardGameGeekClient` or `ApiClient` classes yourself.
 
-### `search(query: string, options?: object): Promise<SearchResult[] | undefined>`
+### Methods
 
-Search for "things" by name using the BGG API.
+**`search(query, options)`**
 
-#### Parameters
+Calls the `search` endpoint, and returns an array of results.
 
-| Name    | Type                | Description                  |
-| ------- | ------------------- | ---------------------------- |
-| query   | `string`            | Search term (e.g. `"Catan"`) |
-| options | `object` (optional) | Options for the BGG API call |
+**`thing(id, options)`**
 
-#### Options
+Calls the `thing` endpoint, and returns an object.
 
-These are the options that can be included in the `options` prop.
+**`hot(options)`**
 
-| Name  | Type                   | Description                                                        |
-| ----- | ---------------------- | ------------------------------------------------------------------ |
-| type  | `string` or `string[]` | The type of "thing" you'd like to query for (example: `boardgame`) |
-| exact | `boolean`              | If `true`, return only exact matches                               |
+Calls the `hot` endpoint, and returns an array of results.
 
-#### Returns
-
-A Promise resolving to an array of `SearchResult` objects, or `undefined` if the API call fails.
-
-#### Example
+### Example
 
 ```ts
-const results = await search('Terraforming Mars', {
-  exact: true,
-  type: 'boardgame',
-});
-// [
-//   { bggId: '167791', title: 'Terraforming Mars', type: 'boardgame' },
-//   ...
-// ]
+import bgg from 'bgg-client';
+
+const results = await bgg.search('Cascadia');
+const game = await bgg.thing('342942'); // Cascadia's BGG ID
+const hot = await bgg.hot();
 ```
 
-### `gameById(id: string, options?: object): Promise<GameDetails | undefined>`
+### Additional Endpoints
 
-Fetch detailed information about a game using its BGG ID.
+This package is in active development, and more endpoints will be added over time. Need something like `user`, `collection`, or `plays`? You can access any BGG endpoint manually by importing the `ApiClient` class and using its `getRequest()` method directly.
 
-#### Parameters
-
-| Name    | Type     | Description                       |
-| ------- | -------- | --------------------------------- |
-| id      | `string` | The numeric ID of the game on BGG |
-| options | `object` | Options for the BGG API call      |
-
-#### Options
-
-These are the options that can be included in the `options` prop.
-
-| Name  | Type                   | Description                                                        |
-| ----- | ---------------------- | ------------------------------------------------------------------ |
-| type  | `string` or `string[]` | The type of "thing" you'd like to query for (example: `boardgame`) |
-| stats | `boolean`              | If `true`, return additional stats, like rankings, game complexity |
-
-#### Returns
-
-A Promise resolving to a `GameDetails` object, or `undefined` if the API call fails.
-
-#### Example
-
-```ts
-const game = await gameById('174430');
-console.log(game.title); // "Gloomhaven"
-```
-
-## 🧱 Type Definitions
-
-### `SearchResult`
-
-```ts
-interface SearchResult {
-  bggId: string;
-  title: string;
-  type: ThingType;
-}
-```
-
-### `GameDetails`
-
-```ts
-interface GameDetails {
-  bggId: string;
-  title: string;
-  img: string;
-  thumbnail: string;
-  yearPublished: number;
-  description: string;
-  minPlayers?: number;
-  maxPlayers?: number;
-  avgPlaytime?: number;
-  minPlaytime?: number;
-  maxPlaytime?: number;
-  minPlayerAge?: number;
-  polls: PollItem[];
-  links: Link[];
-  stats?: {
-    ranks: RankItem[];
-    owned: number;
-    trading: number;
-    wanting: number;
-    wishing: number;
-    complexity: number;
-  };
-}
-```
-
-### `PollItem`
-
-Represents community-generated poll data (e.g. recommended number of players):
-
-```ts
-interface PollItem {
-  name: string;
-  results:
-    | PollResult[]
-    | {
-        players: number;
-        results: PollResult[];
-      }[];
-}
-```
-
-### `PollResult`
-
-```ts
-interface PollResult {
-  value: string;
-  votes: number;
-}
-```
-
-### `Rank Item`
-
-Represents community generated ranking information, like its overall BGG rank, its ranking among strategy games, etc.
-
-```ts
-interface RankItem {
-  type: string;
-  key: string;
-  name: string;
-  value: number;
-}
-```
-
-### `Link`
-
-Represents BGG-related metadata, such as categories, mechanics, and expansions.
-
-```ts
-interface Link {
-  id: string;
-  type: string;
-  value: string;
-}
-```
-
-## 📘 Example App
-
-```ts
-import { search, gameById } from 'bgg-client';
-
-async function fetchGameData(name: string, { exact: true }) {
-  const results = await search(name);
-  if (!results || results.length === 0) return;
-
-  const game = await gameById(results[0].bggId, { stats: true });
-  if (!game) return;
-
-  console.log(`${game.title} (${game.yearPublished})`);
-  console.log(`Players: ${game.minPlayers}-${game.maxPlayers}`);
-  console.log(`Description: ${game.description.slice(0, 150)}...`);
-}
-```
+Refer to the [BGG XML API2 docs](https://boardgamegeek.com/wiki/page/BGG_XML_API2) for documentation on all endpoints, and their options.
 
 ## 🔗 Dependencies
 
-- [xml-js](https://github.com/nashwaan/xml-js)
-- [he](https://github.com/mathiasbynens/he)
+- [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser)
 - [try-catcher-ts](https://github.com/ghall89/try-catcher-ts)

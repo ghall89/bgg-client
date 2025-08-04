@@ -1,75 +1,95 @@
 import { tryCatch } from 'try-catcher-ts';
+import { ApiClient } from './api-client';
 
-import { SearchResult, GameDetails, ThingType } from './types';
-import { parseResults, parseGameData } from './parsers';
-import { getRequest } from './api';
+import {
+  SearchResult,
+  ThingDetails,
+  ThingType,
+  HotItem,
+  HotItemType,
+} from './types';
 
-/**
- * Search the BGG API for the given query and return an array of results.
- */
-export async function search(
-  query: string,
-  options?: {
-    type?: ThingType | ThingType[];
-    exact?: boolean;
-  },
-): Promise<SearchResult[]> {
-  const path = createUrlWithParams(
-    `/xmlapi2/search?query=${encodeURIComponent(query)}`,
-    options,
-  );
+export class BoardGameGeekClient {
+  private api: ApiClient;
 
-  const response = await tryCatch(
-    () => getRequest(path, parseResults),
-    'Error searching BGG API',
-  );
-
-  return response ?? [];
-}
-
-/**
- * Fetch a board game from BGG API by its ID and return the response
- */
-export async function gameById(
-  id: string,
-  options?: {
-    type?: ThingType | ThingType[];
-    // versions?: boolean;
-    // videos?: boolean;
-    stats?: boolean;
-    // comments?: boolean;
-    // ratingcomments?: boolean;
-  },
-): Promise<GameDetails | undefined> {
-  const path = createUrlWithParams(`/xmlapi2/thing?id=${id}`, options);
-
-  const response = await tryCatch(
-    () => getRequest(path, parseGameData),
-    'Error fetching game via API by ID',
-  );
-
-  return response;
-}
-
-function createUrlWithParams(
-  path: string,
-  options: { [k: string]: any } = {},
-): string {
-  const pathArray: string[] = [path];
-
-  for (const key of Object.keys(options)) {
-    const value = options[key];
-
-    if (value === undefined || value === null) continue;
-
-    if (typeof value === 'boolean') {
-      pathArray.push(`${key}=${value ? '1' : '0'}`);
-    } else if (Array.isArray(value)) {
-      pathArray.push(`${key}=${encodeURIComponent(value.join(','))}`);
-    } else {
-      pathArray.push(`${key}=${encodeURIComponent(value)}`);
-    }
+  constructor(options?: { waitTime?: number }) {
+    this.api = new ApiClient({ waitTime: options?.waitTime });
   }
 
-  return pathArray.join('&');
+  /**
+   * Searches the BoardGameGeek (BGG) API for items matching the given query.
+   *
+   * @param query - The search query string.
+   * @param options - Optional parameters to refine the search.
+   * @param options.type - The type or types of items to search for (e.g., boardgame, expansion).
+   * @param options.exact - If true, performs an exact match search.
+   * @returns A promise that resolves to an array of search results.
+   */
+  async search(
+    query: string,
+    options?: {
+      type?: ThingType | ThingType[];
+      exact?: boolean;
+    },
+  ): Promise<SearchResult[]> {
+    const response = await tryCatch(
+      () =>
+        this.api.getRequest<SearchResult[]>('search', { query, ...options }),
+      'Error searching BGG API',
+    );
+
+    return response ?? [];
+  }
+
+  /**
+   * Fetches detailed information about a specific item (thing) from the BGG API by ID.
+   *
+   * @param id - The unique identifier of the item to fetch.
+   * @param options - Optional parameters for the request.
+   * @param options.type - The type or types of the item (e.g., boardgame, boardgameexpansion).
+   * @param options.versions - If true, includes version info in the response.
+   * @param options.videos - If true, includes videos in the response.
+   * @param options.stats - If true, includes ranking and rating stats in the response.
+   * @param options.comments - If true, includes comments in the response.
+   * @param options.ratingcomments - If true, includes comments with ratings in the response.
+   * @param options.pagesize - Set the number of records to return in paging. Minimum is 10, maximum is 100.
+   * @param options.page - Controls the page of data to see for historical info, comments, and ratings data.
+   * @returns A promise that resolves to the item's details, or undefined if an error occurs.
+   */
+  async thing(
+    id: number,
+    options?: {
+      type?: ThingType | ThingType[];
+      versions?: boolean;
+      videos?: boolean;
+      stats?: boolean;
+      comments?: boolean;
+      ratingcomments?: boolean;
+      pagesize?: number;
+      page?: number;
+    },
+  ): Promise<ThingDetails | undefined> {
+    const response = await tryCatch(
+      () => this.api.getRequest<ThingDetails>('thing', { id, ...options }),
+      'Error fetching thing by ID',
+    );
+
+    return response;
+  }
+
+  /**
+   * Fetches a list of hot items (popular items) from the BGG API.
+   *
+   * @param options - Optional parameters to filter hot items.
+   * @param options.type - The type or types of hot items to fetch (e.g., boardgame, boardgameperson).
+   * @returns A promise that resolves to a list of hot items.
+   */
+  async hot(options?: { type?: HotItemType | HotItemType[] }) {
+    const response = await tryCatch(
+      () => this.api.getRequest<HotItem>('hot', options),
+      'Error fetching thing by ID',
+    );
+
+    return response;
+  }
 }
