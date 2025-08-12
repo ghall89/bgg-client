@@ -7,7 +7,7 @@ describe('gameById', () => {
       '7 Wonders',
     );
     expect(result?.statistics).toBeUndefined();
-  }, 5100);
+  }, 5000);
   test('7 Wonders with optional data', async () => {
     const result = await bgg.thing(68448, {
       stats: true,
@@ -23,5 +23,5 @@ describe('gameById', () => {
     expect(result?.versions).toBeDefined();
     expect(result?.videos).toBeDefined();
     expect(result?.comments).toBeDefined();
-  }, 8000);
+  }, 10000);
 });

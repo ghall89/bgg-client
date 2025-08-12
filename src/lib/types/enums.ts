@@ -1,4 +1,4 @@
-enum ThingTypeEnum {
+export enum ThingTypeEnum {
   boardgame,
   boardgameexpansion,
   boardgameaccessory,
@@ -12,7 +12,7 @@ enum ThingTypeEnum {
 
 export type ThingType = keyof typeof ThingTypeEnum;
 
-enum HotItemTypeEnum {
+export enum HotItemTypeEnum {
   boardgame,
   rpg,
   videogame,
@@ -25,7 +25,7 @@ enum HotItemTypeEnum {
 
 export type HotItemType = keyof typeof HotItemTypeEnum;
 
-enum LinkTypeEnum {
+export enum LinkTypeEnum {
   boardgamecategory,
   boardgamemechanic,
   boardgamefamily,

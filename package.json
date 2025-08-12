@@ -13,7 +13,10 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "publish": "tsup src/index.ts --format cjs,esm --dts && npm publish",
     "lint": "npx tsc",
-    "test": "jest"
+    "test": "jest",
+    "hot": "ts-node --transpile-only scripts/hot.ts",
+    "search": "ts-node --transpile-only scripts/search.ts",
+    "thing": "ts-node --transpile-only scripts/thing.ts"
   },
   "keywords": [],
   "author": "",
@@ -29,9 +32,12 @@
     "@types/he": "^1.2.3",
     "@types/jest": "^30.0.0",
     "@types/node": "^20",
+    "@types/prompts": "^2.4.9",
     "jest": "^30.0.4",
     "prettier": "^3.5.3",
+    "prompts": "^2.4.2",
     "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
     "tsup": "^8.5.0",
     "tsx": "^4.19.3",
     "typescript": "^5"
