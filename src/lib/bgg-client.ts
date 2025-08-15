@@ -95,14 +95,14 @@ export class BoardGameGeekClient {
   }
 
   /**
-   * Fetches a "family" with associated things from the BGG API..
+   * Fetches a "family" with associated things from the BGG API.
    *
    * @param id - The unique identifier of the family to fetch.
    * @param options - Optional parameters for the request.
    * @param options.type - The type or types of family to fetch (e.g., boardgamefamily, rpgperiodical).
    * @returns A promise that resolves to a BGG "family" with a list of associated things.
    */
-  async family(id: number, options?: { type: FamilyType }) {
+  async family(id: number, options?: { type: FamilyType | FamilyType[] }) {
     const response = await tryCatch(
       () => this.api.getRequest('family', { id, ...options }),
       'Error fetching family by ID',
