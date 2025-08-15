@@ -1,4 +1,4 @@
-import type { ThingType, LinkType } from './enums';
+import type { ThingType, LinkType, FamilyType } from './enums';
 
 export interface SearchResult {
   id: string;
@@ -126,10 +126,21 @@ export interface LinkItem {
   type: LinkType;
   id: string;
   value: string;
+  inbound: boolean;
 }
 
 export interface Comment {
   username: string;
   rating: number | 'N/A';
   value: string;
+}
+
+export interface Family {
+  id: number;
+  type: FamilyType;
+  thumbnail: string;
+  image: string;
+  name: ThingName | ThingName[];
+  description: string;
+  link: LinkItem[];
 }

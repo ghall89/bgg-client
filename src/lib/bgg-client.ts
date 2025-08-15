@@ -7,6 +7,7 @@ import {
   ThingType,
   HotItem,
   HotItemType,
+  FamilyType,
 } from './types';
 
 export class BoardGameGeekClient {
@@ -88,6 +89,15 @@ export class BoardGameGeekClient {
     const response = await tryCatch(
       () => this.api.getRequest<HotItem>('hot', options),
       'Error fetching thing by ID',
+    );
+
+    return response;
+  }
+
+  async family(id: number, options?: { type: FamilyType }) {
+    const response = await tryCatch(
+      () => this.api.getRequest('family', { id, ...options }),
+      'Error fetching family by ID',
     );
 
     return response;
