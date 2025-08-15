@@ -8,6 +8,7 @@ import {
   HotItem,
   HotItemType,
   FamilyType,
+  Family,
 } from './types';
 
 export class BoardGameGeekClient {
@@ -102,9 +103,12 @@ export class BoardGameGeekClient {
    * @param options.type - The type or types of family to fetch (e.g., boardgamefamily, rpgperiodical).
    * @returns A promise that resolves to a BGG "family" with a list of associated things.
    */
-  async family(id: number, options?: { type: FamilyType | FamilyType[] }) {
+  async family(
+    id: number,
+    options?: { type: FamilyType | FamilyType[] },
+  ): Promise<Family | undefined> {
     const response = await tryCatch(
-      () => this.api.getRequest('family', { id, ...options }),
+      () => this.api.getRequest<Family>('family', { id, ...options }),
       'Error fetching family by ID',
     );
 
