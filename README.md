@@ -37,6 +37,10 @@ Calls the `thing` endpoint to fetch detailed information about a game or item by
 
 Calls the `hot` endpoint to retrieve a list of trending or popular items. You can optionally specify a `type` (e.g., `boardgame`, `rpg`, `boardgameperson`) to filter results.
 
+**`family(id, options)`**
+
+Calls the `family` endpoint to retrieve a "family", and an array of links to related things. You can optionally specify a `type` (e.g., `boardgamefamily`, `rpg`, `rpgperiodical`) to filter results.
+
 ### Example
 
 ```ts
