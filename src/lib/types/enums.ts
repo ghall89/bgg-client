@@ -38,3 +38,11 @@ export enum LinkTypeEnum {
 }
 
 export type LinkType = keyof typeof LinkTypeEnum;
+
+export enum FamilyTypeEnum {
+  rpg,
+  rpgperiodical,
+  boardgamefamily,
+}
+
+export type FamilyType = keyof typeof FamilyTypeEnum;
