@@ -27,7 +27,7 @@ import { FamilyTypeEnum } from '../src/lib/types';
       },
     ]);
 
-    const results = await bgg.family(response.id);
+    const results = await bgg.family(response.id, { type: response.type });
 
     console.log(JSON.stringify(results, null, 2));
   } catch (error) {
