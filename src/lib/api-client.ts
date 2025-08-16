@@ -1,5 +1,7 @@
 import { XMLParser } from 'fast-xml-parser';
 
+import { Endpoint } from './types';
+
 export class ApiClient {
   private BASE_URL = 'https://boardgamegeek.com/xmlapi2' as const;
 
@@ -31,18 +33,7 @@ export class ApiClient {
    * @throws If the response status is not OK.
    */
   async getRequest<T>(
-    path:
-      | 'collection'
-      | 'family'
-      | 'forum'
-      | 'forumlist'
-      | 'guild'
-      | 'hot'
-      | 'plays'
-      | 'search'
-      | 'thing'
-      | 'thread'
-      | 'user',
+    path: Endpoint,
     options: { [k: string]: any } = {},
   ): Promise<T> {
     const now = Date.now();

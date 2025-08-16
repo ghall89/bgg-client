@@ -1,3 +1,16 @@
+export type Endpoint =
+  | 'collection'
+  | 'family'
+  | 'forum'
+  | 'forumlist'
+  | 'guild'
+  | 'hot'
+  | 'plays'
+  | 'search'
+  | 'thing'
+  | 'thread'
+  | 'user';
+
 export enum ThingTypeEnum {
   boardgame,
   boardgameexpansion,

@@ -2,6 +2,7 @@ import { tryCatch } from 'try-catcher-ts';
 import { ApiClient } from './api-client';
 
 import {
+  Endpoint,
   SearchResult,
   ThingDetails,
   ThingType,
@@ -16,6 +17,18 @@ export class BoardGameGeekClient {
 
   constructor(options?: { waitTime?: number }) {
     this.api = new ApiClient({ waitTime: options?.waitTime });
+  }
+
+  private async request<T>(
+    endpoint: Endpoint,
+    options: { [k: string]: any } = {},
+  ): Promise<T> {
+    const response = await tryCatch(
+      () => this.api.getRequest<T>(endpoint, options),
+      'Error fetching data from BGG API',
+    );
+
+    return response;
   }
 
   /**
@@ -34,13 +47,7 @@ export class BoardGameGeekClient {
       exact?: boolean;
     },
   ): Promise<SearchResult[]> {
-    const response = await tryCatch(
-      () =>
-        this.api.getRequest<SearchResult[]>('search', { query, ...options }),
-      'Error searching BGG API',
-    );
-
-    return response ?? [];
+    return this.request<SearchResult[]>('search', { query, ...options }) ?? [];
   }
 
   /**
@@ -71,12 +78,7 @@ export class BoardGameGeekClient {
       page?: number;
     },
   ): Promise<ThingDetails | undefined> {
-    const response = await tryCatch(
-      () => this.api.getRequest<ThingDetails>('thing', { id, ...options }),
-      'Error fetching thing by ID',
-    );
-
-    return response;
+    return this.request<ThingDetails>('thing', { id, ...options });
   }
 
   /**
@@ -87,12 +89,7 @@ export class BoardGameGeekClient {
    * @returns A promise that resolves to a list of hot items.
    */
   async hot(options?: { type?: HotItemType | HotItemType[] }) {
-    const response = await tryCatch(
-      () => this.api.getRequest<HotItem>('hot', options),
-      'Error fetching thing by ID',
-    );
-
-    return response;
+    return this.request<HotItem>('hot', options);
   }
 
   /**
@@ -107,11 +104,6 @@ export class BoardGameGeekClient {
     id: number,
     options?: { type: FamilyType | FamilyType[] },
   ): Promise<Family | undefined> {
-    const response = await tryCatch(
-      () => this.api.getRequest<Family>('family', { id, ...options }),
-      'Error fetching family by ID',
-    );
-
-    return response;
+    return this.request<Family>('family', { id, ...options });
   }
 }
