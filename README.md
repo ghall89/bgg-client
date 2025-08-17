@@ -2,6 +2,8 @@
 
 A TypeScript client for working with the [BoardGameGeek.com API](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
 
+> _By using `bgg-client`, you accept BoardGameGeek.com's [XML API Terms of Use](https://boardgamegeek.com/wiki/page/XML_API_Terms_of_Use#)._
+
 ## 📦 Install
 
 ```bash
