@@ -15,8 +15,12 @@ import {
 export class BoardGameGeekClient {
   private api: ApiClient;
 
-  constructor(options?: { waitTime?: number }) {
-    this.api = new ApiClient({ waitTime: options?.waitTime });
+  constructor() {
+    this.api = new ApiClient();
+  }
+
+  setTimeout(waitTime: number) {
+    this.api.setTimeout(waitTime);
   }
 
   private async request<T>(
@@ -89,7 +93,7 @@ export class BoardGameGeekClient {
    * @returns A promise that resolves to a list of hot items.
    */
   async hot(options?: { type?: HotItemType | HotItemType[] }) {
-    return this.request<HotItem>('hot', options);
+    return this.request<HotItem[]>('hot', options);
   }
 
   /**
@@ -105,5 +109,49 @@ export class BoardGameGeekClient {
     options?: { type: FamilyType | FamilyType[] },
   ): Promise<Family | undefined> {
     return this.request<Family>('family', { id, ...options });
+  }
+
+  async user(
+    name: string,
+    options?: {
+      buddies?: boolean;
+      guilds?: boolean;
+      hot?: boolean;
+      top?: boolean;
+      domain?: 'boardgame' | 'rpg' | 'videogame';
+      page?: number;
+    },
+  ) {
+    return this.request('user', { name, ...options });
+  }
+
+  async guild(
+    id: number,
+    options?: {
+      members?: boolean;
+      sort?: 'username' | 'date';
+      page?: number;
+    },
+  ) {
+    return this.request('guild', { id, ...options });
+  }
+
+  async plays(
+    id: number | string,
+    options?: {
+      type?: 'thing' | 'family';
+      subtype?: ThingType | ThingType[];
+      page?: number;
+    },
+  ) {
+    let dynamicOptions: object;
+
+    if (typeof id === 'number') {
+      dynamicOptions = { id, ...options };
+    } else {
+      dynamicOptions = { username: id, ...options };
+    }
+
+    return this.request('guild', dynamicOptions);
   }
 }

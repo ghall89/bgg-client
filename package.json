@@ -13,7 +13,7 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "publish": "tsup src/index.ts --format cjs,esm --dts && npm publish",
     "lint": "npx tsc",
-    "test": "jest",
+    "test": "jest --verbose",
     "hot": "ts-node --transpile-only scripts/hot.ts",
     "search": "ts-node --transpile-only scripts/search.ts",
     "thing": "ts-node --transpile-only scripts/thing.ts",

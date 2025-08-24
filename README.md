@@ -1,5 +1,10 @@
 # 🎲 bgg-client
 
+![NPM Version](https://img.shields.io/npm/v/bgg-client)
+![NPM Downloads](https://img.shields.io/npm/dm/bgg-client)
+![npm bundle size](https://img.shields.io/bundlephobia/min/bgg-client)
+![GitHub License](https://img.shields.io/github/license/ghall89/bgg-client)
+
 A TypeScript client for working with the [BoardGameGeek.com API](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
 
 > _By using `bgg-client`, you accept BoardGameGeek.com's [XML API Terms of Use](https://boardgamegeek.com/wiki/page/XML_API_Terms_of_Use#)._

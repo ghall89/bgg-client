@@ -1,17 +1,17 @@
-import { XMLParser } from 'fast-xml-parser';
+import { XMLParser, X2jOptions } from 'fast-xml-parser';
 
 import { Endpoint } from './types';
 
 export class ApiClient {
-  private BASE_URL = 'https://boardgamegeek.com/xmlapi2' as const;
+  private domain = 'boardgamegeek';
+  private endpoint = 'xmlapi2';
 
   private lastCalled = 0;
-  private waitTime: number;
+  private waitTime: number = 5000;
 
   private parser: XMLParser;
 
-  constructor(config?: { waitTime?: number }) {
-    this.waitTime = config?.waitTime ?? 5000;
+  constructor() {
     this.parser = new XMLParser({
       ignoreAttributes: false,
       attributeNamePrefix: '',
@@ -20,6 +20,22 @@ export class ApiClient {
       trimValues: true,
       htmlEntities: true,
     });
+  }
+
+  setParserOptions(options: X2jOptions) {
+    this.parser = new XMLParser(options);
+  }
+
+  setTimeout(waitTime: number) {
+    this.waitTime = waitTime;
+  }
+
+  setDomain(domain: 'boardgamegeek' | 'rpggeek' | 'videogamegeek') {
+    this.domain = domain;
+  }
+
+  setApiEndpoint(endpoint: 'xmlapi2' | 'xmlapi') {
+    this.endpoint = endpoint;
   }
 
   /**
@@ -68,7 +84,7 @@ export class ApiClient {
     path: string,
     options: { [k: string]: any } = {},
   ): string {
-    const pathArray: string[] = [path];
+    const pathArray: string[] = [];
 
     for (const key of Object.keys(options)) {
       const value = options[key];
@@ -84,7 +100,7 @@ export class ApiClient {
       }
     }
 
-    return `${this.BASE_URL}/${path}${pathArray.length > 0 && '?'}${pathArray.join('&')}`;
+    return `https://${this.domain}.com/${this.endpoint}/${path}${pathArray.length > 0 && '?'}${pathArray.join('&')}`;
   }
 
   /**
