@@ -111,6 +111,9 @@ export class BoardGameGeekClient {
     return this.request<Family>('family', { id, ...options });
   }
 
+  /* TODO: Add type definitions and JSDocs to all
+  endpoints below */
+
   async user(
     name: string,
     options?: {
@@ -153,5 +156,59 @@ export class BoardGameGeekClient {
     }
 
     return this.request('guild', dynamicOptions);
+  }
+
+  async collection(
+    username: string,
+    options?: {
+      version?: boolean;
+      subtype?: ThingType;
+      excludesubtype?: ThingType;
+      id?: number | number[];
+      brief?: boolean;
+      stats?: boolean;
+      own?: boolean;
+      rated?: boolean;
+      played?: boolean;
+      comment?: boolean;
+      trade?: boolean;
+      want?: boolean;
+      wishlist?: boolean;
+      wishlistpriority?: 1 | 2 | 3 | 4 | 5;
+      preordered?: boolean;
+      wanttoplay?: boolean;
+      wanttobuy?: boolean;
+      prevowned?: boolean;
+      hasparts?: boolean;
+      wantparts?: boolean;
+      minrating?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      bggrating?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      minplays?: number;
+      maxplays?: number;
+      showprivate?: boolean;
+      collid?: number;
+      modifiedsince?: Date;
+    },
+  ) {
+    return this.request('collection', { username, ...options });
+  }
+
+  async forumList(id: number, options?: { type?: 'thing' | 'family' }) {
+    return this.request('forumlist', { id, ...options });
+  }
+
+  async forum(id: number, options?: { page?: number }) {
+    return this.request('forum', { id, ...options });
+  }
+
+  async thread(
+    id: number,
+    options: {
+      minarticleid?: number;
+      minarticledate?: Date;
+      count?: number;
+    },
+  ) {
+    return this.request('thread', { id, ...options });
   }
 }
