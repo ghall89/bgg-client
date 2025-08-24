@@ -1,4 +1,4 @@
-import type { ThingType, LinkType, FamilyType } from './enums';
+import type { ThingType, LinkType, FamilyType, DomainType } from './enums';
 
 export interface SearchResult {
   id: string;
@@ -143,4 +143,53 @@ export interface Family {
   name: ThingName | ThingName[];
   description: string;
   link: LinkItem[];
+}
+
+export interface User {
+  id: number;
+  name: string;
+  firstname: StringValueAttribute;
+  lastname: StringValueAttribute;
+  avararlink: StringValueAttribute;
+  yearregistered: NumberValueAttribute;
+  lastlogin: StringValueAttribute;
+  stateorprovince: StringValueAttribute;
+  country: StringValueAttribute;
+  webaddress: StringValueAttribute;
+  xboxaccount: StringValueAttribute;
+  wiiaccount: StringValueAttribute;
+  psnaccount: StringValueAttribute;
+  battlenetaccount: StringValueAttribute;
+  steamaccount: StringValueAttribute;
+  traderating: NumberValueAttribute;
+  buddies?: {
+    buddy?: UserConnection[];
+    total: number;
+    page: number;
+  };
+  guilds?: {
+    guild?: UserConnection[];
+    total: number;
+    page: number;
+  };
+  top?: {
+    item: UserItem[];
+    domain: DomainType;
+  };
+  hot?: {
+    item: UserItem[];
+    domain: DomainType;
+  };
+}
+
+export interface UserConnection {
+  name: string;
+  id: number;
+}
+
+export interface UserItem {
+  rank: number;
+  type: string;
+  id: number;
+  name: string;
 }

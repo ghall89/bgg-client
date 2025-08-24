@@ -59,3 +59,11 @@ export enum FamilyTypeEnum {
 }
 
 export type FamilyType = keyof typeof FamilyTypeEnum;
+
+export enum DomainTypeEnum {
+  boardgame,
+  rpg,
+  videogame,
+}
+
+export type DomainType = keyof typeof DomainTypeEnum;

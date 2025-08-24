@@ -10,6 +10,8 @@ import {
   HotItemType,
   FamilyType,
   Family,
+  User,
+  DomainType,
 } from './types';
 
 export class BoardGameGeekClient {
@@ -111,9 +113,19 @@ export class BoardGameGeekClient {
     return this.request<Family>('family', { id, ...options });
   }
 
-  /* TODO: Add type definitions and JSDocs to all
-  endpoints below */
-
+  /**
+   * Fetches a user from the BGG API.
+   *
+   * @param name - The unique username of the user to fetch.
+   * @param options - Optional parameters for the request.
+   * @param options.buddies - Turns on optional buddies reporting.
+   * @param options.guilds - Turns on optional guilds reporting.
+   * @param options.hot - Include the user's hot 10 list from their profile.
+   * @param options.top - Include the user's top 10 list from their profile.
+   * @param options.domain - Controls the domain for the users hot 10 and top 10 lists.
+   * @param options.page - Specifies the page of buddy and guild results to return.
+   * @returns A promise that resolves to a BGG "user", or undefined if an error occurs.
+   */
   async user(
     name: string,
     options?: {
@@ -121,12 +133,15 @@ export class BoardGameGeekClient {
       guilds?: boolean;
       hot?: boolean;
       top?: boolean;
-      domain?: 'boardgame' | 'rpg' | 'videogame';
+      domain?: DomainType;
       page?: number;
     },
-  ) {
-    return this.request('user', { name, ...options });
+  ): Promise<User | undefined> {
+    return this.request<User>('user', { name, ...options });
   }
+
+  /* TODO: Add type definitions and JSDocs to all
+  endpoints below */
 
   async guild(
     id: number,

@@ -57,7 +57,7 @@ import { ThingTypeEnum } from '../src/lib/types';
     let additionalData = {};
 
     for (const option in response.include) {
-      additionalData[option] = true;
+      additionalData[response.include[option]] = true;
     }
 
     const results = await bgg.thing(response.id, {
