@@ -1,7 +1,7 @@
 import { tryCatch } from 'try-catcher-ts';
 import { ApiClient } from './api-client';
 
-import {
+import type {
   Endpoint,
   SearchResult,
   ThingDetails,
@@ -13,6 +13,7 @@ import {
   User,
   DomainType,
   CollectionItem,
+  Guild,
 } from './types';
 
 export class BoardGameGeekClient {
@@ -158,8 +159,8 @@ export class BoardGameGeekClient {
       sort?: 'username' | 'date';
       page?: number;
     },
-  ) {
-    return this.request('guild', { id, ...options });
+  ): Promise<Guild | undefined> {
+    return this.request<Guild>('guild', { id, ...options });
   }
 
   /**

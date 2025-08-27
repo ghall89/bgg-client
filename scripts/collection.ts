@@ -1,6 +1,5 @@
 #!/usr/bin/env ts-node
 import prompts from 'prompts';
-import { Choice } from 'prompts';
 import bgg from '../src';
 
 (async () => {

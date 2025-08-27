@@ -219,3 +219,33 @@ export interface CollectionItem {
   subtype: ThingType;
   collid: number;
 }
+
+export interface Guild {
+  category: string;
+  website: string;
+  manager: string;
+  description: string;
+  location: GuildLocation;
+  members?: {
+    member: GuildMember[];
+    count: number;
+    page: number;
+  };
+  id: number;
+  name: string;
+  creeated: Date;
+}
+
+export interface GuildLocation {
+  addr1: string;
+  addr2: string;
+  city: string;
+  stateorprovince: string;
+  postalcode: number | string;
+  country: string;
+}
+
+export interface GuildMember {
+  name: string;
+  date: Date;
+}

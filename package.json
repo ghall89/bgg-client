@@ -17,7 +17,9 @@
     "hot": "ts-node --transpile-only scripts/hot.ts",
     "search": "ts-node --transpile-only scripts/search.ts",
     "thing": "ts-node --transpile-only scripts/thing.ts",
-    "family": "ts-node --transpile-only scripts/family.ts"
+    "family": "ts-node --transpile-only scripts/family.ts",
+    "collection": "ts-node --transpile-only scripts/collection.ts",
+    "guild": "ts-node --transpile-only scripts/guild.ts"
   },
   "keywords": [],
   "author": "",
