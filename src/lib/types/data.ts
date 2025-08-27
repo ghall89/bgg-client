@@ -193,3 +193,29 @@ export interface UserItem {
   id: number;
   name: string;
 }
+
+export interface CollectionItem {
+  name: {
+    '#text': string;
+    'sortindex': number;
+  };
+  yearpublished: number;
+  image: string;
+  thumbnail: string;
+  status: {
+    own: number;
+    prevowned: number;
+    fortrade: number;
+    want: number;
+    wanttoplay: number;
+    wanttobuy: number;
+    wishlist: number;
+    preordered: number;
+    lastmodified: Date;
+  };
+  numplays: number;
+  objecttype: string;
+  objectid: number;
+  subtype: ThingType;
+  collid: number;
+}

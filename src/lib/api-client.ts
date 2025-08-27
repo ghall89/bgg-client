@@ -114,6 +114,8 @@ export class ApiClient {
     const xml = await response.text();
     const object = this.parser.parse(xml, true);
 
+    console.log(object);
+
     const data = object?.items?.item || object?.user;
 
     return data as T;

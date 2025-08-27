@@ -12,6 +12,7 @@ import {
   Family,
   User,
   DomainType,
+  CollectionItem,
 } from './types';
 
 export class BoardGameGeekClient {
@@ -38,7 +39,7 @@ export class BoardGameGeekClient {
   }
 
   /**
-   * Searches the BoardGameGeek (BGG) API for items matching the given query.
+   * Search the BoardGameGeek (BGG) API for items matching the given query.
    *
    * @param query - The search query string.
    * @param options - Optional parameters to refine the search.
@@ -57,7 +58,7 @@ export class BoardGameGeekClient {
   }
 
   /**
-   * Fetches detailed information about a specific item (thing) from the BGG API by ID.
+   * Request detailed information about a specific item (thing) from the BGG API by ID.
    *
    * @param id - The unique identifier of the item to fetch.
    * @param options - Optional parameters for the request.
@@ -88,7 +89,7 @@ export class BoardGameGeekClient {
   }
 
   /**
-   * Fetches a list of hot items (popular items) from the BGG API.
+   * Request a list of hot items (popular items) from the BGG API.
    *
    * @param options - Optional parameters to filter hot items.
    * @param options.type - The type or types of hot items to fetch (e.g., boardgame, boardgameperson).
@@ -99,12 +100,12 @@ export class BoardGameGeekClient {
   }
 
   /**
-   * Fetches a "family" with associated things from the BGG API.
+   * Request a "family" with associated things from the BGG API.
    *
    * @param id - The unique identifier of the family to fetch.
    * @param options - Optional parameters for the request.
    * @param options.type - The type or types of family to fetch (e.g., boardgamefamily, rpgperiodical).
-   * @returns A promise that resolves to a BGG "family" with a list of associated things.
+   * @returns A promise that resolves to a family with a list of associated things.
    */
   async family(
     id: number,
@@ -114,7 +115,7 @@ export class BoardGameGeekClient {
   }
 
   /**
-   * Fetches a user from the BGG API.
+   * Request a user from the BGG API.
    *
    * @param name - The unique username of the user to fetch.
    * @param options - Optional parameters for the request.
@@ -124,7 +125,7 @@ export class BoardGameGeekClient {
    * @param options.top - Include the user's top 10 list from their profile.
    * @param options.domain - Controls the domain for the users hot 10 and top 10 lists.
    * @param options.page - Specifies the page of buddy and guild results to return.
-   * @returns A promise that resolves to a BGG "user", or undefined if an error occurs.
+   * @returns A promise that resolves to a user, or undefined if an error occurs.
    */
   async user(
     name: string,
@@ -140,9 +141,16 @@ export class BoardGameGeekClient {
     return this.request<User>('user', { name, ...options });
   }
 
-  /* TODO: Add type definitions and JSDocs to all
-  endpoints below */
-
+  /**
+   * Request information about particular guilds.
+   *
+   * @param id - The unique identifier of the guild to fetch.
+   * @param options - Optional parameters for the request.
+   * @param options.members -	Include member roster in the results. Member list is paged and sorted.
+   * @param options.sort - Specifies how to sort the members list (e.g., username, date)
+   * @param options.page - The page of the members list to return. Page size is 25.
+   * @returns A promise that resolves to a guild, or undefined if an error occurs.
+   */
   async guild(
     id: number,
     options?: {
@@ -154,6 +162,16 @@ export class BoardGameGeekClient {
     return this.request('guild', { id, ...options });
   }
 
+  /**
+   * Request plays logged by a particular user or for a particular item.
+   *
+   * @param id - Name of the player or id of item you want to request play information for.
+   * @param options - Optional parameters for the request.
+   * @param options.type - Type of the item you want to request play information for. (e.g. thing, family)
+   * @param options.subtype - Limits play results to the specified type.
+   * @param options.page -  The page of information to request. Page size is 100.
+   * @returns A promise that resolves to a list of play records for the given user or item.
+   */
   async plays(
     id: number | string,
     options?: {
@@ -173,6 +191,42 @@ export class BoardGameGeekClient {
     return this.request('guild', dynamicOptions);
   }
 
+  /**
+   * Request details of a user's collection.
+   *
+   * @param username - Name of the user to request the collection for.
+   * @param options - Optional parameters for the request.
+   * @param options.version - Returns version info for each item in the requested collection.
+   * @param options.subtype -Specifies which collection type you want to retrieve.
+   * @param options.excludesubtype - Specifies which subtype you want to exclude from the results.
+   * @param options.id - Filter collection to specifically listed item(s).
+   * @param options.brief - Returns more abbreviated results.
+   * @param options.stats - Returns expanded rating/ranking info for the collection.
+   * @param options.own - Filter for owned games.
+   * @param options.rated - Filter for whether an item has been rated.
+   * @param options.played - Filter for whether an item has been played.
+   * @param options.comment - Filter for items that have been commented.
+   * @param options.trade - Filter for items marked for trade.
+   * @param options.want - Filter for items wanted in trade.
+   * @param options.wishlist - Filter for items on the wishlist.
+   * @param options.wishlistpriority - Filter for wishlist priority.
+   * @param options.preordered - Filter for pre-ordered games.
+   * @param options.wanttoplay - Filter for items marked as wanting to play.
+   * @param options.wanttobuy - Filter for items marked as wanting to buy.
+   * @param options.prevowned - Filter for games marked previously owned.
+   * @param options.hasparts - Filter on whether there is a comment in the "Has Parts" field of the item.
+   * @param options.wantparts - Filter on whether there is a comment in the "Wants Parts" field of the item.
+   * @param options.minrating -	Filter on minimum personal rating assigned for that item in the collection.
+   * @param options.rating - Filter on maximum personal rating assigned for that item in the collection.
+   * @param options.minbggrating - Filter on minimum BGG rating for that item in the collection.
+   * @param options.bggrating - Filter on maximum BGG rating for that item in the collection.
+   * @param options.minplays - Filter by minimum number of recorded plays.
+   * @param options.maxplays - Filter by maximum number of recorded plays.
+   * @param options.showprivate - Filter to show private collection info.
+   * @param options.collid - Restrict the collection results to the single specified collection id.
+   * @param options.modifiedsince - Restricts the collection results to only those whose status (own, want, fortrade, etc.) has changed or been added since the date specified.
+   * @returns A promise that resolves to a user collection, or undefined if an error occurs.
+   */
   async collection(
     username: string,
     options?: {
@@ -197,6 +251,8 @@ export class BoardGameGeekClient {
       hasparts?: boolean;
       wantparts?: boolean;
       minrating?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      rating?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      minbggrating?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
       bggrating?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
       minplays?: number;
       maxplays?: number;
@@ -204,18 +260,44 @@ export class BoardGameGeekClient {
       collid?: number;
       modifiedsince?: Date;
     },
-  ) {
-    return this.request('collection', { username, ...options });
+  ): Promise<CollectionItem[]> {
+    return this.request<CollectionItem[]>('collection', {
+      username,
+      ...options,
+    });
   }
 
+  /**
+   * Request a list of forums for an item.
+   *
+   * @param id - Specifies the id of the type of database entry you want the forum list for.
+   * @param options - Optional parameters for the request.
+   * @param options.type - The type of entry in the database.
+   */
   async forumList(id: number, options?: { type?: 'thing' | 'family' }) {
     return this.request('forumlist', { id, ...options });
   }
 
+  /**
+   * Request a list of forums for an item.
+   *
+   * @param id - Specifies the id of the type of database entry you want the forum list for.
+   * @param options - Optional parameters for the request.
+   * @param options.type - The type of entry in the database.
+   */
   async forum(id: number, options?: { page?: number }) {
     return this.request('forum', { id, ...options });
   }
 
+  /**
+   * Request a forum thread.
+   *
+   * @param id - Specifies the id of the thread to retrieve.
+   * @param options - Optional parameters for the request.
+   * @param options.minarticleid - Filters the results so that only articles with an equal or higher id than "minarticleid" will be returned.
+   * @param options.minarticledate - Filters the results so that only articles on the specified date or later will be returned.
+   * @param options.count - Limits the number of articles returned.
+   */
   async thread(
     id: number,
     options: {
