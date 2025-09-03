@@ -1,3 +1,16 @@
+export type Endpoint =
+  | 'collection'
+  | 'family'
+  | 'forum'
+  | 'forumlist'
+  | 'guild'
+  | 'hot'
+  | 'plays'
+  | 'search'
+  | 'thing'
+  | 'thread'
+  | 'user';
+
 export enum ThingTypeEnum {
   boardgame,
   boardgameexpansion,
@@ -46,3 +59,11 @@ export enum FamilyTypeEnum {
 }
 
 export type FamilyType = keyof typeof FamilyTypeEnum;
+
+export enum DomainTypeEnum {
+  boardgame,
+  rpg,
+  videogame,
+}
+
+export type DomainType = keyof typeof DomainTypeEnum;

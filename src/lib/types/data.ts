@@ -1,4 +1,4 @@
-import type { ThingType, LinkType, FamilyType } from './enums';
+import type { ThingType, LinkType, FamilyType, DomainType } from './enums';
 
 export interface SearchResult {
   id: string;
@@ -143,4 +143,150 @@ export interface Family {
   name: ThingName | ThingName[];
   description: string;
   link: LinkItem[];
+}
+
+export interface User {
+  id: number;
+  name: string;
+  firstname: StringValueAttribute;
+  lastname: StringValueAttribute;
+  avararlink: StringValueAttribute;
+  yearregistered: NumberValueAttribute;
+  lastlogin: StringValueAttribute;
+  stateorprovince: StringValueAttribute;
+  country: StringValueAttribute;
+  webaddress: StringValueAttribute;
+  xboxaccount: StringValueAttribute;
+  wiiaccount: StringValueAttribute;
+  psnaccount: StringValueAttribute;
+  battlenetaccount: StringValueAttribute;
+  steamaccount: StringValueAttribute;
+  traderating: NumberValueAttribute;
+  buddies?: {
+    buddy?: UserConnection[];
+    total: number;
+    page: number;
+  };
+  guilds?: {
+    guild?: UserConnection[];
+    total: number;
+    page: number;
+  };
+  top?: {
+    item: UserItem[];
+    domain: DomainType;
+  };
+  hot?: {
+    item: UserItem[];
+    domain: DomainType;
+  };
+}
+
+export interface UserConnection {
+  name: string;
+  id: number;
+}
+
+export interface UserItem {
+  rank: number;
+  type: string;
+  id: number;
+  name: string;
+}
+
+export interface CollectionItem {
+  name: {
+    '#text': string;
+    'sortindex': number;
+  };
+  yearpublished: number;
+  image: string;
+  thumbnail: string;
+  status: {
+    own: number;
+    prevowned: number;
+    fortrade: number;
+    want: number;
+    wanttoplay: number;
+    wanttobuy: number;
+    wishlist: number;
+    preordered: number;
+    lastmodified: Date;
+  };
+  numplays: number;
+  objecttype: string;
+  objectid: number;
+  subtype: ThingType;
+  collid: number;
+}
+
+export interface Guild {
+  category: string;
+  website: string;
+  manager: string;
+  description: string;
+  location: GuildLocation;
+  members?: {
+    member: GuildMember[];
+    count: number;
+    page: number;
+  };
+  id: number;
+  name: string;
+  creeated: Date;
+}
+
+export interface GuildLocation {
+  addr1: string;
+  addr2: string;
+  city: string;
+  stateorprovince: string;
+  postalcode: number | string;
+  country: string;
+}
+
+export interface GuildMember {
+  name: string;
+  date: Date;
+}
+
+export interface Forum {
+  id: number;
+  groupid: number;
+  title: string;
+  noposting: number;
+  description: string;
+  numthreads: number;
+  numposts: number;
+  lastpostdate: Date;
+  threads?: ForumThread[];
+}
+
+export interface ForumThread {
+  id: number;
+  subject: string;
+  author: string;
+  numarticles: number;
+  postdate: Date;
+  lastpostdate: Date;
+}
+
+export interface Thread {
+  subject: string;
+  articles: {
+    article: Article[];
+  };
+  id: number;
+  link: string;
+}
+
+export interface Article {
+  subject: string;
+  body: string;
+  id: number;
+  username: string;
+  link: string;
+  postdate: Date;
+  editdate: Date;
+  numedits: number;
 }
