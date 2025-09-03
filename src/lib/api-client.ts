@@ -116,7 +116,13 @@ export class ApiClient {
 
     console.log(object);
 
-    const data = object?.items?.item || object?.user || object?.guild;
+    const data =
+      object?.items?.item ||
+      object?.user ||
+      object?.guild ||
+      object?.forums?.forum ||
+      object?.forum ||
+      object.thread;
 
     return data as T;
   }

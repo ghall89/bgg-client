@@ -249,3 +249,44 @@ export interface GuildMember {
   name: string;
   date: Date;
 }
+
+export interface Forum {
+  id: number;
+  groupid: number;
+  title: string;
+  noposting: number;
+  description: string;
+  numthreads: number;
+  numposts: number;
+  lastpostdate: Date;
+  threads?: ForumThread[];
+}
+
+export interface ForumThread {
+  id: number;
+  subject: string;
+  author: string;
+  numarticles: number;
+  postdate: Date;
+  lastpostdate: Date;
+}
+
+export interface Thread {
+  subject: string;
+  articles: {
+    article: Article[];
+  };
+  id: number;
+  link: string;
+}
+
+export interface Article {
+  subject: string;
+  body: string;
+  id: number;
+  username: string;
+  link: string;
+  postdate: Date;
+  editdate: Date;
+  numedits: number;
+}

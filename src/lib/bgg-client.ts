@@ -14,6 +14,8 @@ import type {
   DomainType,
   CollectionItem,
   Guild,
+  Forum,
+  Thread,
 } from './types';
 
 export class BoardGameGeekClient {
@@ -275,12 +277,15 @@ export class BoardGameGeekClient {
    * @param options - Optional parameters for the request.
    * @param options.type - The type of entry in the database.
    */
-  async forumList(id: number, options?: { type?: 'thing' | 'family' }) {
-    return this.request('forumlist', { id, ...options });
+  async forumList(
+    id: number,
+    options: { type?: 'thing' | 'family' } = { type: 'thing' },
+  ): Promise<Forum[]> {
+    return this.request<Forum[]>('forumlist', { id, ...options });
   }
 
   /**
-   * Request a list of forums for an item.
+   * Request a list of threads for a forum.
    *
    * @param id - Specifies the id of the type of database entry you want the forum list for.
    * @param options - Optional parameters for the request.
@@ -301,12 +306,12 @@ export class BoardGameGeekClient {
    */
   async thread(
     id: number,
-    options: {
+    options?: {
       minarticleid?: number;
       minarticledate?: Date;
       count?: number;
     },
-  ) {
-    return this.request('thread', { id, ...options });
+  ): Promise<Thread> {
+    return this.request<Thread>('thread', { id, ...options });
   }
 }
