@@ -1,6 +1,6 @@
 {
   "name": "bgg-client",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -13,11 +13,8 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "publish": "tsup src/index.ts --format cjs,esm --dts && npm publish",
     "lint": "npx tsc",
-    "test": "jest",
-    "hot": "ts-node --transpile-only scripts/hot.ts",
-    "search": "ts-node --transpile-only scripts/search.ts",
-    "thing": "ts-node --transpile-only scripts/thing.ts",
-    "family": "ts-node --transpile-only scripts/family.ts"
+    "test": "jest --verbose",
+    "script": "ts-node ./script.ts"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +22,6 @@
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
     "fast-xml-parser": "^5.2.5",
-    "he": "^1.2.0",
     "try-catcher-ts": "^0.1.1"
   },
   "devDependencies": {
@@ -33,10 +29,8 @@
     "@types/he": "^1.2.3",
     "@types/jest": "^30.0.0",
     "@types/node": "^20",
-    "@types/prompts": "^2.4.9",
     "jest": "^30.0.4",
     "prettier": "^3.5.3",
-    "prompts": "^2.4.2",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "tsup": "^8.5.0",
