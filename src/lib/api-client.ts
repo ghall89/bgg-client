@@ -10,8 +10,9 @@ export class ApiClient {
   private waitTime: number = 5000;
 
   private parser: XMLParser;
+  private apiKey: string;
 
-  constructor() {
+  constructor(apiKey: string) {
     this.parser = new XMLParser({
       ignoreAttributes: false,
       attributeNamePrefix: '',
@@ -20,6 +21,8 @@ export class ApiClient {
       trimValues: true,
       htmlEntities: true,
     });
+
+    this.apiKey = apiKey;
   }
 
   setParserOptions(options: X2jOptions) {
@@ -64,7 +67,11 @@ export class ApiClient {
 
     const url = this.createUrlWithParams(path, options);
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${this.apiKey}`,
+      },
+    });
 
     if (!response?.ok) {
       throw new Error(`Response status: ${response?.status}`);
