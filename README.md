@@ -27,7 +27,7 @@ bun add bgg-client
 Import the BoardGameGeekClient class, and create a new instance of it with an API key.
 
 ```ts
-import { BoardGameGeekClient } from 'bgg-client;
+import { BoardGameGeekClient } from 'bgg-client';
 const bgg = new BoardGameGeekClient('your-api-key');
 ```
 
@@ -111,7 +111,7 @@ Calls the "thread" endpoint to retrieve a forum "thread" by thread id.
 ## Example
 
 ```ts
-import { BoardGameGeekClient } from 'bgg-client;
+import { BoardGameGeekClient } from 'bgg-client';
 const bgg = new BoardGameGeekClient('your-api-key');
 
 const results = await bgg.search('Cascadia');

@@ -1,10 +1,17 @@
 import { BoardGameGeekClient } from '../src/index';
 
-const bgg = new BoardGameGeekClient(process.env.API_KEY);
-
-jest.setTimeout(6000);
+jest.setTimeout(8000);
 
 describe('BoardGameGeekClient', () => {
+  let bgg: BoardGameGeekClient;
+
+  beforeAll(() => {
+    const apiKey = process.env.API_KEY;
+    console.log(`API KEY: ${apiKey}`);
+
+    bgg = new BoardGameGeekClient(apiKey);
+  });
+
   describe('family()', () => {
     test('fetch family by id', async () => {
       const id = 33;
