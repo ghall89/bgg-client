@@ -21,8 +21,14 @@ import type {
 export class BoardGameGeekClient {
   private api: ApiClient;
 
-  constructor() {
-    this.api = new ApiClient();
+  constructor(apiKey: string | undefined) {
+    if (!apiKey) {
+      throw Error(
+        'Please provide an API key. To apply for an API key visit https://boardgamegeek.com/applications',
+      );
+    }
+
+    this.api = new ApiClient(apiKey);
   }
 
   setTimeout(waitTime: number) {

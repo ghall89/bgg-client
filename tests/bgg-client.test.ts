@@ -1,9 +1,18 @@
-import bgg from '../src/index';
+import { BoardGameGeekClient } from '../src/index';
 
-jest.setTimeout(6000);
+jest.setTimeout(8000);
 
-describe('BoardGameGeekClient', async () => {
-  describe('family()', async () => {
+describe('BoardGameGeekClient', () => {
+  let bgg: BoardGameGeekClient;
+
+  beforeAll(() => {
+    const apiKey = process.env.API_KEY;
+    console.log(`API KEY: ${apiKey}`);
+
+    bgg = new BoardGameGeekClient(apiKey);
+  });
+
+  describe('family()', () => {
     test('fetch family by id', async () => {
       const id = 33;
       const result = await bgg.family(id);
@@ -12,7 +21,7 @@ describe('BoardGameGeekClient', async () => {
     });
   });
 
-  describe('hot()', async () => {
+  describe('hot()', () => {
     test('fetch hot games list', async () => {
       const result = await bgg.hot();
       expect(result).toBeDefined();
@@ -21,7 +30,7 @@ describe('BoardGameGeekClient', async () => {
     });
   });
 
-  describe('search()', async () =>
+  describe('search()', () =>
     test('search for a game by name', async () => {
       const result = await bgg.search('Catan');
       expect(result).toBeDefined();
@@ -31,7 +40,7 @@ describe('BoardGameGeekClient', async () => {
       ).toBe(true);
     }));
 
-  describe('thing()', async () => {
+  describe('thing()', () => {
     test('fetch thing by id without optional data', async () => {
       const result = await bgg.thing(68448);
       expect(result).toBeDefined();

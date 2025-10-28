@@ -1,6 +1,6 @@
 {
   "name": "bgg-client",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "publish": "tsup src/index.ts --format cjs,esm --dts && npm publish",
     "lint": "npx tsc",
     "test": "jest --verbose",
-    "script": "ts-node ./script.ts"
+    "postinstall": "node -e \"console.log('\\x1b[33m⚠️  Breaking change in v2: The default export has been removed. See migration guide: https://github.com/ghall89/bgg-client#migration-from-v1-to-v2\\x1b[0m')\""
   },
   "keywords": [],
   "author": "",
@@ -29,6 +29,7 @@
     "@types/he": "^1.2.3",
     "@types/jest": "^30.0.0",
     "@types/node": "^20",
+    "dotenv": "^17.2.3",
     "jest": "^30.0.4",
     "prettier": "^3.5.3",
     "ts-jest": "^29.4.0",

@@ -7,7 +7,7 @@
 
 A TypeScript client for working with the [BoardGameGeek.com API](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
 
-> _By using `bgg-client`, you accept BoardGameGeek.com's [XML API Terms of Use](https://boardgamegeek.com/wiki/page/XML_API_Terms_of_Use#)._
+To use `bgg-client`, you must [get an API key](https://boardgamegeek.com/applications), and accept BoardGameGeek.com's [XML API Terms of Use](https://boardgamegeek.com/wiki/page/XML_API_Terms_of_Use#).
 
 ## Install
 
@@ -24,11 +24,21 @@ bun add bgg-client
 
 ## Usage
 
-Simply import the default `bgg` instance from `bgg-client` — a pre-instantiated (singleton) client with built-in rate limiting for the BoardGameGeek API.
+Import the BoardGameGeekClient class, and create a new instance of it with an API key.
 
-If you'd prefer more control — for example, to customize rate limits or request behavior — you can import the `BoardGameGeekClient` class. For full manual access to any endpoint, you can use the lower-level `ApiClient` class.
+```ts
+import { BoardGameGeekClient } from 'bgg-client';
+const bgg = new BoardGameGeekClient('your-api-key');
+```
 
-By default, there is a rate limit of 1 request every 5 seconds to comply with the BoardGameGeek API's suggested request rate. This can be adjusted by importing and instantiating either the `BoardGameGeekClient` or `ApiClient` classes yourself.
+By default, there is a rate limit of 1 request every 5 seconds to comply with the BoardGameGeek API's suggested request rate.
+
+For full manual access to any endpoint, you can use the lower-level `ApiClient` class. However, this is not fully supported, and you may have to provide your own types for full type safety.
+
+
+## Migration from v1 to v2
+
+The default export has been removed. You must now import `BoardGameGeekClient` and provide an API key, as described above.
 
 ## Methods
 
@@ -101,7 +111,8 @@ Calls the "thread" endpoint to retrieve a forum "thread" by thread id.
 ## Example
 
 ```ts
-import bgg from 'bgg-client';
+import { BoardGameGeekClient } from 'bgg-client';
+const bgg = new BoardGameGeekClient('your-api-key');
 
 const results = await bgg.search('Cascadia');
 const game = await bgg.thing('342942'); // Cascadia's BGG ID
