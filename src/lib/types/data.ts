@@ -19,7 +19,7 @@ export interface ThingDetails {
   id: string;
   thumbnail: string;
   image: string;
-  name: ThingName[];
+  name: ThingName[] | ThingName;
   description: string;
   yearpublished: NumberValueAttribute;
   minplayers: NumberValueAttribute;
@@ -57,7 +57,7 @@ export interface ThingDetails {
       thumbnail: string;
       image: string;
       link: LinkItem[];
-      name: ThingName[];
+      name: ThingName[] | ThingName;
       yearpublished: NumberValueAttribute;
       productcode: StringValueAttribute;
       width: NumberValueAttribute;
