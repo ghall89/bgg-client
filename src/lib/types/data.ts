@@ -7,13 +7,13 @@ import {
   family,
   forum,
   forumThread,
+  guild,
   guildLocation,
   guildMember,
   hotItem,
   linkItem,
   pollItem,
   pollResult,
-  pollResultItem,
   searchResult,
   thingDetails,
   thread,
@@ -28,13 +28,13 @@ export type Comment = z.infer<typeof comment>;
 export type Family = z.infer<typeof family>;
 export type Forum = z.infer<typeof forum>;
 export type ForumThread = z.infer<typeof forumThread>;
+export type Guild = z.infer<typeof guild>;
 export type GuildLocation = z.infer<typeof guildLocation>;
 export type GuildMember = z.infer<typeof guildMember>;
 export type HotItem = z.infer<typeof hotItem>;
 export type LinkItem = z.infer<typeof linkItem>;
 export type PollItem = z.infer<typeof pollItem>;
 export type PollResult = z.infer<typeof pollResult>;
-export type PollResultItem = z.infer<typeof pollResultItem>;
 export type SearchResult = z.infer<typeof searchResult>;
 export type ThingDetails = z.infer<typeof thingDetails>;
 export type Thread = z.infer<typeof thread>;

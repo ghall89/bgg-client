@@ -1,4 +1,7 @@
+import type { ZodArray, ZodObject } from 'zod';
+import { z } from 'zod';
 import { tryCatch } from 'try-catcher-ts';
+
 import { ApiClient } from './api-client';
 
 import type {
@@ -17,6 +20,17 @@ import type {
   Forum,
   Thread,
 } from './types';
+import {
+  collectionitem,
+  family,
+  forum,
+  guild,
+  hotItem,
+  searchResult,
+  thingDetails,
+  thread,
+  user,
+} from './schema';
 
 export class BoardGameGeekClient {
   private api: ApiClient;
@@ -38,13 +52,18 @@ export class BoardGameGeekClient {
   private async request<T>(
     endpoint: Endpoint,
     options: { [k: string]: any } = {},
+    schema: ZodObject | ZodArray,
   ): Promise<T> {
     const response = await tryCatch(
-      () => this.api.getRequest<T>(endpoint, options),
+      () => this.api.getRequest(endpoint, options),
       'Error fetching data from BGG API',
     );
 
-    return response;
+    if (!schema) return response as T;
+
+    const validatedResponse = schema.parse(response) as T;
+
+    return validatedResponse;
   }
 
   /**
@@ -63,7 +82,13 @@ export class BoardGameGeekClient {
       exact?: boolean;
     },
   ): Promise<SearchResult[]> {
-    return this.request<SearchResult[]>('search', { query, ...options }) ?? [];
+    return (
+      this.request<SearchResult[]>(
+        'search',
+        { query, ...options },
+        z.array(searchResult),
+      ) ?? []
+    );
   }
 
   /**
@@ -94,7 +119,11 @@ export class BoardGameGeekClient {
       page?: number;
     },
   ): Promise<ThingDetails | undefined> {
-    return this.request<ThingDetails>('thing', { id, ...options });
+    return this.request<ThingDetails>(
+      'thing',
+      { id, ...options },
+      thingDetails,
+    );
   }
 
   /**
@@ -105,7 +134,7 @@ export class BoardGameGeekClient {
    * @returns A promise that resolves to a list of hot items.
    */
   async hot(options?: { type?: HotItemType | HotItemType[] }) {
-    return this.request<HotItem[]>('hot', options);
+    return this.request<HotItem[]>('hot', options, z.array(hotItem));
   }
 
   /**
@@ -120,7 +149,7 @@ export class BoardGameGeekClient {
     id: number,
     options?: { type: FamilyType | FamilyType[] },
   ): Promise<Family | undefined> {
-    return this.request<Family>('family', { id, ...options });
+    return this.request<Family>('family', { id, ...options }, family);
   }
 
   /**
@@ -147,7 +176,7 @@ export class BoardGameGeekClient {
       page?: number;
     },
   ): Promise<User | undefined> {
-    return this.request<User>('user', { name, ...options });
+    return this.request<User>('user', { name, ...options }, user);
   }
 
   /**
@@ -168,7 +197,7 @@ export class BoardGameGeekClient {
       page?: number;
     },
   ): Promise<Guild | undefined> {
-    return this.request<Guild>('guild', { id, ...options });
+    return this.request<Guild>('guild', { id, ...options }, guild);
   }
 
   /**
@@ -197,7 +226,7 @@ export class BoardGameGeekClient {
       dynamicOptions = { username: id, ...options };
     }
 
-    return this.request('guild', dynamicOptions);
+    return this.request('guild', dynamicOptions, guild);
   }
 
   /**
@@ -270,10 +299,14 @@ export class BoardGameGeekClient {
       modifiedsince?: Date;
     },
   ): Promise<CollectionItem[]> {
-    return this.request<CollectionItem[]>('collection', {
-      username,
-      ...options,
-    });
+    return this.request<CollectionItem[]>(
+      'collection',
+      {
+        username,
+        ...options,
+      },
+      collectionitem,
+    );
   }
 
   /**
@@ -287,7 +320,11 @@ export class BoardGameGeekClient {
     id: number,
     options: { type?: 'thing' | 'family' } = { type: 'thing' },
   ): Promise<Forum[]> {
-    return this.request<Forum[]>('forumlist', { id, ...options });
+    return this.request<Forum[]>(
+      'forumlist',
+      { id, ...options },
+      z.array(forum),
+    );
   }
 
   /**
@@ -298,7 +335,7 @@ export class BoardGameGeekClient {
    * @param options.type - The type of entry in the database.
    */
   async forum(id: number, options?: { page?: number }) {
-    return this.request('forum', { id, ...options });
+    return this.request('forum', { id, ...options }, forum);
   }
 
   /**
@@ -318,6 +355,6 @@ export class BoardGameGeekClient {
       count?: number;
     },
   ): Promise<Thread> {
-    return this.request<Thread>('thread', { id, ...options });
+    return this.request<Thread>('thread', { id, ...options }, thread);
   }
 }

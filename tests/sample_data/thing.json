@@ -1,0 +1,877 @@
+ {
+      "thumbnail": "https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__small/img/BUOso8b0M1aUOkU80FWlhE8uuxc=/fit-in/200x150/filters:strip_icc()/pic7149798.jpg",
+      "image": "https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__original/img/jt70jJDZ1y1FWJs4ZQf5FI8APVY=/0x0/filters:format(jpeg)/pic7149798.jpg",
+      "name": [
+        {
+          "type": "primary",
+          "sortindex": 1,
+          "value": "7 Wonders"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "7 csoda"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "7 Cudów Świata"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "7 divů světa"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "7 чудес"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "7 สิ่งมหัศจรรย์"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "7 원더스"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "Τα 7 θαύματα του κόσμου"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "七大奇蹟"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "七大奇迹"
+        },
+        {
+          "type": "alternate",
+          "sortindex": 1,
+          "value": "世界の七不思議"
+        }
+      ],
+      "description": "You are the leader of one of the 7 great cities of the Ancient World. Gather resources, develop commercial routes, and affirm your military supremacy. Build your city and erect an architectural wonder which will transcend future times.\n\n7 Wonders lasts three ages. In each age, players receive seven cards from a particular deck, choose one of those cards, then pass the remainder to an adjacent player. Players reveal their cards simultaneously, paying resources if needed or collecting resources or interacting with other players in various ways. (Players have individual boards with special powers on which to organize their cards, and the boards are double-sided). Each player then chooses another card from the deck they were passed, and the process repeats until players have six cards in play from that age. After three ages, the game ends.\n\nIn essence, 7 Wonders is a card development game. Some cards have immediate effects, while others provide bonuses or upgrades later in the game. Some cards provide discounts on future purchases. Some provide military strength to overpower your neighbors and others give nothing but victory points. Each card is played immediately after being drafted, so you'll know which cards your neighbor is receiving and how her choices might affect what you've already built up. Cards are passed left-right-left over the three ages, so you need to keep an eye on the neighbors in both directions.\n\nThough the box of earlier editions is listed as being for 3&ndash;7 players, there is an official 2-player variant included in the instructions.",
+      "yearpublished": {
+        "value": 2010
+      },
+      "minplayers": {
+        "value": 2
+      },
+      "maxplayers": {
+        "value": 7
+      },
+      "poll": [
+        {
+          "results": [
+            {
+              "result": [
+                {
+                  "value": "Best",
+                  "numvotes": 4
+                },
+                {
+                  "value": "Recommended",
+                  "numvotes": 17
+                },
+                {
+                  "value": "Not Recommended",
+                  "numvotes": 1560
+                }
+              ],
+              "numplayers": 1
+            },
+            {
+              "result": [
+                {
+                  "value": "Best",
+                  "numvotes": 118
+                },
+                {
+                  "value": "Recommended",
+                  "numvotes": 397
+                },
+                {
+                  "value": "Not Recommended",
+                  "numvotes": 1362
+                }
+              ],
+              "numplayers": 2
+            },
+            {
+              "result": [
+                {
+                  "value": "Best",
+                  "numvotes": 530
+                },
+                {
+                  "value": "Recommended",
+                  "numvotes": 1329
+                },
+                {
+                  "value": "Not Recommended",
+                  "numvotes": 247
+                }
+              ],
+              "numplayers": 3
+            },
+            {
+              "result": [
+                {
+                  "value": "Best",
+                  "numvotes": 1344
+                },
+                {
+                  "value": "Recommended",
+                  "numvotes": 840
+                },
+                {
+                  "value": "Not Recommended",
+                  "numvotes": 48
+                }
+              ],
+              "numplayers": 4
+            },
+            {
+              "result": [
+                {
+                  "value": "Best",
+                  "numvotes": 1221
+                },
+                {
+                  "value": "Recommended",
+                  "numvotes": 890
+                },
+                {
+                  "value": "Not Recommended",
+                  "numvotes": 63
+                }
+              ],
+              "numplayers": 5
+            },
+            {
+              "result": [
+                {
+                  "value": "Best",
+                  "numvotes": 553
+                },
+                {
+                  "value": "Recommended",
+                  "numvotes": 1277
+                },
+                {
+                  "value": "Not Recommended",
+                  "numvotes": 183
+                }
+              ],
+              "numplayers": 6
+            },
+            {
+              "result": [
+                {
+                  "value": "Best",
+                  "numvotes": 456
+                },
+                {
+                  "value": "Recommended",
+                  "numvotes": 1192
+                },
+                {
+                  "value": "Not Recommended",
+                  "numvotes": 328
+                }
+              ],
+              "numplayers": 7
+            },
+            {
+              "result": [
+                {
+                  "value": "Best",
+                  "numvotes": 30
+                },
+                {
+                  "value": "Recommended",
+                  "numvotes": 112
+                },
+                {
+                  "value": "Not Recommended",
+                  "numvotes": 1059
+                }
+              ],
+              "numplayers": "7+"
+            }
+          ],
+          "name": "suggested_numplayers",
+          "title": "User Suggested Number of Players",
+          "totalvotes": 2526
+        },
+        {
+          "results": {
+            "result": [
+              {
+                "value": 2,
+                "numvotes": 0
+              },
+              {
+                "value": 3,
+                "numvotes": 0
+              },
+              {
+                "value": 4,
+                "numvotes": 1
+              },
+              {
+                "value": 5,
+                "numvotes": 1
+              },
+              {
+                "value": 6,
+                "numvotes": 23
+              },
+              {
+                "value": 8,
+                "numvotes": 157
+              },
+              {
+                "value": 10,
+                "numvotes": 228
+              },
+              {
+                "value": 12,
+                "numvotes": 126
+              },
+              {
+                "value": 14,
+                "numvotes": 23
+              },
+              {
+                "value": 16,
+                "numvotes": 4
+              },
+              {
+                "value": 18,
+                "numvotes": 1
+              },
+              {
+                "value": "21 and up",
+                "numvotes": 0
+              }
+            ]
+          },
+          "name": "suggested_playerage",
+          "title": "User Suggested Player Age",
+          "totalvotes": 564
+        },
+        {
+          "results": {
+            "result": [
+              {
+                "level": 26,
+                "value": "No necessary in-game text",
+                "numvotes": 315
+              },
+              {
+                "level": 27,
+                "value": "Some necessary text - easily memorized or small crib sheet",
+                "numvotes": 91
+              },
+              {
+                "level": 28,
+                "value": "Moderate in-game text - needs crib sheet or paste ups",
+                "numvotes": 4
+              },
+              {
+                "level": 29,
+                "value": "Extensive use of text - massive conversion needed to be playable",
+                "numvotes": 1
+              },
+              {
+                "level": 30,
+                "value": "Unplayable in another language",
+                "numvotes": 0
+              }
+            ]
+          },
+          "name": "language_dependence",
+          "title": "Language Dependence",
+          "totalvotes": 411
+        }
+      ],
+      "poll-summary": {
+        "result": [
+          {
+            "name": "bestwith",
+            "value": "Best with 4–5 players"
+          },
+          {
+            "name": "recommmendedwith",
+            "value": "Recommended with 3–7 players"
+          }
+        ],
+        "name": "suggested_numplayers",
+        "title": "User Suggested Number of Players"
+      },
+      "playingtime": {
+        "value": 30
+      },
+      "minplaytime": {
+        "value": 30
+      },
+      "maxplaytime": {
+        "value": 30
+      },
+      "minage": {
+        "value": 10
+      },
+      "link": [
+        {
+          "type": "boardgamecategory",
+          "id": 1050,
+          "value": "Ancient"
+        },
+        {
+          "type": "boardgamecategory",
+          "id": 1002,
+          "value": "Card Game"
+        },
+        {
+          "type": "boardgamecategory",
+          "id": 1029,
+          "value": "City Building"
+        },
+        {
+          "type": "boardgamecategory",
+          "id": 1015,
+          "value": "Civilization"
+        },
+        {
+          "type": "boardgamecategory",
+          "id": 1021,
+          "value": "Economic"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2984,
+          "value": "Closed Drafting"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2875,
+          "value": "End Game Bonuses"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2040,
+          "value": "Hand Management"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2981,
+          "value": "Melding and Splaying"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 3099,
+          "value": "Multi-Use Cards"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 3104,
+          "value": "Neighbor Scope"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2846,
+          "value": "Once-Per-Game Abilities"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2823,
+          "value": "Score-and-Reset Game"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2004,
+          "value": "Set Collection"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2020,
+          "value": "Simultaneous Action Selection"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 3100,
+          "value": "Tags"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2849,
+          "value": "Tech Trees / Tech Tracks"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2015,
+          "value": "Variable Player Powers"
+        },
+        {
+          "type": "boardgamemechanic",
+          "id": 2897,
+          "value": "Variable Set-up"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 27524,
+          "value": "Ancient: Babylon"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 72535,
+          "value": "Ancient: Egypt"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 52373,
+          "value": "Ancient: Greece"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 77906,
+          "value": "Category: Dized Tutorial"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 77012,
+          "value": "Constructions: Pyramids"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 111038,
+          "value": "Constructions: The Hanging Gardens of Babylon"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 70360,
+          "value": "Digital Implementations: Board Game Arena"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 76458,
+          "value": "Digital Implementations: BrettspielWelt"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 78432,
+          "value": "Digital Implementations: Google Play"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 17552,
+          "value": "Game: 7 Wonders"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 71181,
+          "value": "Mechanism: Artificial Player"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 27646,
+          "value": "Mechanism: Tableau Building"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 109134,
+          "value": "Misc: BGG Hall of Fame"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 105030,
+          "value": "Misc: Dice Tower Hall of Fame"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 78198,
+          "value": "Misc: Watch It Played How To Videos"
+        },
+        {
+          "type": "boardgamefamily",
+          "id": 113768,
+          "value": "Players: Games with expansions that change player count"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 247315,
+          "value": "7 Wonders: Armada"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 262276,
+          "value": "7 Wonders: Armada – Siracusa"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 154638,
+          "value": "7 Wonders: Babel"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 110308,
+          "value": "7 Wonders: Catan"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 111661,
+          "value": "7 Wonders: Cities"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 231168,
+          "value": "7 Wonders: Cities Anniversary Pack"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 368780,
+          "value": "7 Wonders: Companion App"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 378839,
+          "value": "7 Wonders: Edifice"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 92539,
+          "value": "7 Wonders: Leaders"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 130236,
+          "value": "7 Wonders: Leaders – Esteban"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 127838,
+          "value": "7 Wonders: Leaders – Louis"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 166329,
+          "value": "7 Wonders: Leaders – Nimrod"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 99315,
+          "value": "7 Wonders: Leaders – Stevie"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 156119,
+          "value": "7 Wonders: Leaders – Wil Promo Card"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 231167,
+          "value": "7 Wonders: Leaders Anniversary Pack"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 83445,
+          "value": "7 Wonders: Manneken Pis"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 447859,
+          "value": "7 Wonders: The Great Wall"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 133993,
+          "value": "7 Wonders: Wonder Pack"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 164649,
+          "value": "Collection (fan expansion for 7 Wonders)"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 140098,
+          "value": "Empires (fan expansion for 7 Wonders)"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 138187,
+          "value": "Game Wonders (fan expansion for 7 Wonders)"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 134849,
+          "value": "Lost Wonders (fan expansion for 7 Wonders)"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 329310,
+          "value": "Modern Wonders (fan expansion for 7 Wonders)"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 131947,
+          "value": "More Wonders... (fan expansion for 7 Wonders)"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 132146,
+          "value": "Myths (fan expansion for 7 Wonders)"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 164648,
+          "value": "Ruins (fan expansion for 7 Wonders)"
+        },
+        {
+          "type": "boardgameexpansion",
+          "id": 164647,
+          "value": "Sailors (fan expansion for 7 Wonders)"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 339391,
+          "value": "7 Wonders: Eurohell Design Coin-Sleeves"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 173357,
+          "value": "7 Wonders: Art Pack"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 270431,
+          "value": "7 Wonders: Broken Token Organizer"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 344432,
+          "value": "7 Wonders: CN Tower Alternate Art Promo Card"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 309365,
+          "value": "7 Wonders: e-Raptor Insert"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 266242,
+          "value": "7 Wonders: Folded Space Insert"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 272080,
+          "value": "7 Wonders: GameGuard Organizer"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 228574,
+          "value": "7 Wonders: Gaming Trunk Organizer"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 329170,
+          "value": "7 Wonders: Geekmod Insert"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 272020,
+          "value": "7 Wonders: Go7 Insert"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 326745,
+          "value": "7 Wonders: Laserox Wooden Wonder Insert"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 271277,
+          "value": "7 Wonders: Leaders – Linus Alternate Art Card"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 364784,
+          "value": "7 Wonders: Leaders – Moedas & Co. Metal Coins"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 231231,
+          "value": "7 Wonders: Leaders – Phryne Alternate Art Card"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 196929,
+          "value": "7 Wonders: Metal Coins"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 364783,
+          "value": "7 Wonders: Moedas & Co. Metal Coins"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 199216,
+          "value": "7 Wonders: Palace Alternate Art Promo Card"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 158795,
+          "value": "7 Wonders: Playmat"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 188869,
+          "value": "7 Wonders: Repos Production Playmat"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 378753,
+          "value": "7 Wonders: Spielmaterial.de Upgrade"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 271273,
+          "value": "7 Wonders: The Game Doctors Insert"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 348557,
+          "value": "7 Wonders: The GiftForge Insert"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 444535,
+          "value": "7 Wonders: Tokens Garden Metal Coins"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 271750,
+          "value": "7 Wonders: Tower Rex Organizer"
+        },
+        {
+          "type": "boardgameaccessory",
+          "id": 270441,
+          "value": "7 Wonders: Wondrous Organizer – Extra Dividers"
+        },
+        {
+          "type": "boardgameimplementation",
+          "id": 316377,
+          "value": "7 Wonders (Second Edition)"
+        },
+        {
+          "type": "boardgameimplementation",
+          "id": 173346,
+          "value": "7 Wonders Duel"
+        },
+        {
+          "type": "boardgameimplementation",
+          "id": 346703,
+          "value": "7 Wonders: Architects"
+        },
+        {
+          "type": "boardgamedesigner",
+          "id": 9714,
+          "value": "Antoine Bauza"
+        },
+        {
+          "type": "boardgameartist",
+          "id": 62528,
+          "value": "Dimitri Chappuis"
+        },
+        {
+          "type": "boardgameartist",
+          "id": 12016,
+          "value": "Miguel Coimbra"
+        },
+        {
+          "type": "boardgameartist",
+          "id": 100254,
+          "value": "Etienne Hebinger"
+        },
+        {
+          "type": "boardgameartist",
+          "id": 89045,
+          "value": "Cyril Nouvel"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 4384,
+          "value": "Repos Production"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 23043,
+          "value": "ADC Blackfire Entertainment"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 15889,
+          "value": "Asterion Press"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 15605,
+          "value": "Galápagos Jogos"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 8820,
+          "value": "Gém Klub Kft."
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 1391,
+          "value": "Hobby Japan"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 6214,
+          "value": "Kaissa Chess & Games"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 8291,
+          "value": "Korea Boardgames"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 3218,
+          "value": "Lautapelit.fi"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 9325,
+          "value": "Lifestyle Boardgames Ltd"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 32395,
+          "value": "NeoTroy Games"
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 7466,
+          "value": "Rebel Sp. z o.o."
+        },
+        {
+          "type": "boardgamepublisher",
+          "id": 33998,
+          "value": "Siam Board Games"
+        }
+      ],
+      "type": "boardgame",
+      "id": 68448
+    }

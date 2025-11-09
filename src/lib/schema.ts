@@ -15,14 +15,7 @@ const dateValueAttribute = z.object({
 });
 
 const numberValueAttribute = z.object({
-  value: z
-    .string()
-    .transform((value) => (value === '' ? null : value))
-    .nullable()
-    .refine((value) => value === null || !isNaN(Number(value)), {
-      message: 'Invalid number',
-    })
-    .transform((value) => (value === null ? null : Number(value))),
+  value: z.number(),
 });
 
 const thingName = z.object({
@@ -31,14 +24,9 @@ const thingName = z.object({
   value: z.string(),
 });
 
-const rank = z.object({
-  type: z.string(),
-  id: z.string(),
-  name: z.string(),
-  friendlyname: z.string(),
-  value: z.string(),
-  bayesaverage: z.string(),
-});
+// Workaround for XML parser returning objects that should be arrays
+export const coerceArray = <T extends z.ZodTypeAny>(schema: T) =>
+  z.preprocess((v) => (Array.isArray(v) ? v : [v]), z.array(schema));
 
 // enums
 
@@ -75,6 +63,8 @@ export const linkTypeEnum = z.enum([
   'boardgamedesigner',
   'boardgameartist',
   'boardgamepublisher',
+  'boardgameversion',
+  'language',
 ]);
 
 export const familyTypeEnum = z.enum([
@@ -88,45 +78,55 @@ export const domainTypeEnum = z.enum(['boardgame', 'rpg', 'videogame']);
 // data
 
 export const searchResult = z.object({
-  id: z.string(),
+  id: z.number(),
   type: thingTypeEnum,
   name: stringValueAttribute,
 });
 
 export const hotItem = z.object({
-  id: z.string(),
-  rank: z.string(),
+  id: z.number(),
+  rank: z.number(),
   thumbnail: urlValueAttribute,
   name: stringValueAttribute,
   yearpublished: numberValueAttribute,
 });
 
-export const pollResultItem = z.object({
-  id: z.string(),
-  numbvotes: z.number(),
-});
-
-export const pollResult = z.object({
-  numplayers: z.number(),
-  result: z.array(pollResultItem),
-});
+export const pollResult = z
+  .object({
+    numplayers: z.union([z.number(), z.string()]).optional(),
+    value: z.union([z.number(), z.string()]).optional(),
+    numvotes: z.number(),
+  })
+  .refine(
+    (data) => (data.numplayers === undefined) !== (data.value === undefined),
+    {
+      message: 'numplayers or value must be defined',
+      path: ['numplayers'],
+    },
+  );
 
 export const pollItem = z.object({
   name: z.string(),
-  results: z.union([pollResult, z.array(pollResult)]),
+  results: coerceArray(
+    z.object({
+      result: coerceArray(pollResult),
+    }),
+  ),
+  title: z.string(),
+  totalvotes: z.number(),
 });
 
 export const linkItem = z.object({
   type: linkTypeEnum,
-  id: z.string(),
+  id: z.number(),
   value: z.string(),
-  inbound: z.boolean(),
+  inbound: z.boolean().optional(),
 });
 
 export const comment = z.object({
   username: z.string(),
   rating: z.union([z.number(), z.literal('N/A')]),
-  value: z.string(),
+  value: z.coerce.string(),
 });
 
 export const family = z.object({
@@ -134,9 +134,9 @@ export const family = z.object({
   type: familyTypeEnum,
   thumbnail: z.url(),
   image: z.url(),
-  name: z.union([thingName, z.array(thingName)]),
+  name: coerceArray(thingName),
   description: z.string(),
-  link: z.array(linkItem),
+  link: coerceArray(linkItem),
 });
 
 export const userConnection = z.object({
@@ -178,7 +178,7 @@ export const collectionitem = z.object({
 });
 
 export const user = z.object({
-  id: z.string(),
+  id: z.number(),
   name: z.string(),
   firstname: stringValueAttribute,
   lastname: stringValueAttribute,
@@ -196,27 +196,27 @@ export const user = z.object({
   traderrating: numberValueAttribute,
   buddies: z
     .object({
-      buddy: z.array(userConnection).optional(),
+      buddy: coerceArray(userConnection).optional(),
       total: z.number(),
       page: z.number(),
     })
     .optional(),
   guilds: z
     .object({
-      guild: z.array(userConnection).optional(),
+      guild: coerceArray(userConnection).optional(),
       total: z.number(),
       page: z.number(),
     })
     .optional(),
   top: z
     .object({
-      item: z.array(userItem),
+      item: coerceArray(userItem),
       domain: domainTypeEnum,
     })
     .optional(),
   hot: z
     .object({
-      item: z.array(userItem),
+      item: coerceArray(userItem),
       domain: domainTypeEnum,
     })
     .optional(),
@@ -244,7 +244,7 @@ export const guild = z.object({
   location: guildLocation,
   members: z
     .object({
-      member: z.array(guildMember),
+      member: coerceArray(guildMember),
       count: z.number(),
       page: z.number(),
     })
@@ -272,7 +272,7 @@ export const forum = z.object({
   numthreads: z.number(),
   numposts: z.number(),
   lastpostdate: z.date(),
-  threads: z.array(forumThread).optional(),
+  threads: coerceArray(forumThread).optional(),
 });
 
 export const article = z.object({
@@ -288,59 +288,68 @@ export const article = z.object({
 
 export const thread = z.object({
   subject: z.string(),
-  articles: z.array(article),
+  articles: coerceArray(article),
   id: z.number(),
   link: z.url(),
 });
 
 export const thingDetails = z.object({
   type: z.string(),
-  id: z.string(),
+  id: z.number(),
   thumbnail: z.url(),
   image: z.url(),
-  name: z.union([thingName, z.array(thingName)]),
+  name: coerceArray(thingName),
   description: z.string(),
   yearpublished: numberValueAttribute,
   minplayers: numberValueAttribute,
   maxplayers: numberValueAttribute,
   playingtime: z.object({
-    value: z.string(),
+    value: z.number(),
   }),
   minplaytime: numberValueAttribute,
   maxplaytime: numberValueAttribute,
-  poll: z.array(pollItem),
-  link: z.array(linkItem),
+  poll: coerceArray(pollItem),
+  link: coerceArray(linkItem),
   statistics: z
     .object({
-      page: z.string(),
+      page: z.number(),
       ratings: z.object({
         usersrated: numberValueAttribute,
         average: numberValueAttribute,
         bayesaverage: numberValueAttribute,
-        ranks: {
-          rank: z.array(rank),
-        },
-        stddev: numberValueAttribute,
-        median: numberValueAttribute,
-        trading: numberValueAttribute,
-        wanting: numberValueAttribute,
-        wishing: numberValueAttribute,
-        numcomments: numberValueAttribute,
-        numweights: numberValueAttribute,
-        averageweight: numberValueAttribute,
+        ranks: z.object({
+          rank: coerceArray(
+            z.object({
+              type: z.string(),
+              id: z.number(),
+              name: z.string(),
+              friendlyname: z.string(),
+              value: z.number(),
+              bayesaverage: z.number(),
+            }),
+          ),
+        }),
+        stddev: numberValueAttribute.optional(),
+        median: numberValueAttribute.optional(),
+        trading: numberValueAttribute.optional(),
+        wanting: numberValueAttribute.optional(),
+        wishing: numberValueAttribute.optional(),
+        numcomments: numberValueAttribute.optional(),
+        numweights: numberValueAttribute.optional(),
+        averageweight: numberValueAttribute.optional(),
       }),
     })
     .optional(),
   versions: z
     .object({
-      item: z.array(
+      item: coerceArray(
         z.object({
-          thumbnail: z.url(),
-          image: z.url(),
-          link: z.array(linkItem),
-          name: z.union([thingName, z.array(thingName)]),
+          thumbnail: z.url().optional(),
+          image: z.url().optional(),
+          link: coerceArray(linkItem),
+          name: coerceArray(thingName),
           yearpublished: numberValueAttribute,
-          productcode: stringValueAttribute,
+          productcode: z.union([numberValueAttribute, stringValueAttribute]),
           width: numberValueAttribute,
           length: numberValueAttribute,
           depth: numberValueAttribute,
@@ -353,7 +362,7 @@ export const thingDetails = z.object({
     .optional(),
   videos: z
     .object({
-      video: z.array(
+      video: coerceArray(
         z.object({
           id: z.number(),
           title: z.string(),
@@ -361,14 +370,14 @@ export const thingDetails = z.object({
           language: z.string(),
           username: z.string(),
           userid: z.number(),
-          postdate: z.date(),
+          postdate: z.coerce.date(),
         }),
       ),
     })
     .optional(),
   comments: z
     .object({
-      comment: z.array(comment),
+      comment: coerceArray(comment),
     })
     .optional(),
 });
