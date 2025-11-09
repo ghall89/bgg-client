@@ -1,6 +1,6 @@
 {
   "name": "bgg-client",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -22,7 +22,8 @@
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
     "fast-xml-parser": "^5.2.5",
-    "try-catcher-ts": "^0.1.1"
+    "try-catcher-ts": "^0.1.1",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@swc/core": "^1.12.7",

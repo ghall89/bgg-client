@@ -1,3 +1,13 @@
+import { z } from 'zod';
+
+import {
+  thingTypeEnum,
+  hotItemTypeEnum,
+  linkTypeEnum,
+  familyTypeEnum,
+  domainTypeEnum,
+} from '../schema';
+
 export type Endpoint =
   | 'collection'
   | 'family'
@@ -11,59 +21,12 @@ export type Endpoint =
   | 'thread'
   | 'user';
 
-export enum ThingTypeEnum {
-  boardgame,
-  boardgameexpansion,
-  boardgameaccessory,
-  boardgameintegration,
-  boardgamecompilation,
-  boardgameimplementation,
-  rpg,
-  rpgitem,
-  videogame,
-}
+export type ThingType = z.infer<typeof thingTypeEnum>;
 
-export type ThingType = keyof typeof ThingTypeEnum;
+export type HotItemType = z.infer<typeof hotItemTypeEnum>;
 
-export enum HotItemTypeEnum {
-  boardgame,
-  rpg,
-  videogame,
-  boardgameperson,
-  rpgperson,
-  boardgamecompany,
-  rpgcompany,
-  videogamecompany,
-}
+export type LinkType = z.infer<typeof linkTypeEnum>;
 
-export type HotItemType = keyof typeof HotItemTypeEnum;
+export type FamilyType = z.infer<typeof familyTypeEnum>;
 
-export enum LinkTypeEnum {
-  boardgamecategory,
-  boardgamemechanic,
-  boardgamefamily,
-  boardgameexpansion,
-  boardgameaccessory,
-  boardgameimplementation,
-  boardgamedesigner,
-  boardgameartist,
-  boardgamepublisher,
-}
-
-export type LinkType = keyof typeof LinkTypeEnum;
-
-export enum FamilyTypeEnum {
-  rpg,
-  rpgperiodical,
-  boardgamefamily,
-}
-
-export type FamilyType = keyof typeof FamilyTypeEnum;
-
-export enum DomainTypeEnum {
-  boardgame,
-  rpg,
-  videogame,
-}
-
-export type DomainType = keyof typeof DomainTypeEnum;
+export type DomainType = z.infer<typeof domainTypeEnum>;
