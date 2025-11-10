@@ -7,11 +7,11 @@ const stringValueAttribute = z.object({
 });
 
 const urlValueAttribute = z.object({
-  value: z.url(),
+  value: z.union([z.url(), z.literal('')]),
 });
 
 const dateValueAttribute = z.object({
-  value: z.date(),
+  value: z.coerce.date(),
 });
 
 const numberValueAttribute = z.object({
@@ -187,13 +187,13 @@ export const user = z.object({
   lastlogin: dateValueAttribute,
   stateorprovince: stringValueAttribute,
   country: stringValueAttribute,
-  webaddress: urlValueAttribute,
+  webaddress: stringValueAttribute,
   xboxaccount: stringValueAttribute,
   wiiaccount: stringValueAttribute,
   psnaccount: stringValueAttribute,
   battlenetaccount: stringValueAttribute,
   steamaccount: stringValueAttribute,
-  traderrating: numberValueAttribute,
+  traderrating: numberValueAttribute.optional(),
   buddies: z
     .object({
       buddy: coerceArray(userConnection).optional(),
@@ -259,20 +259,20 @@ export const forumThread = z.object({
   subject: z.string(),
   author: z.string(),
   numarticles: z.number(),
-  postdate: z.date(),
-  lastpostdate: z.date(),
+  postdate: z.coerce.date(),
+  lastpostdate: z.coerce.date(),
 });
 
 export const forum = z.object({
   id: z.number(),
-  groupid: z.number(),
+  groupid: z.number().optional(),
   title: z.string(),
   noposting: z.number(),
-  description: z.string(),
+  description: z.string().optional(),
   numthreads: z.number(),
   numposts: z.number(),
-  lastpostdate: z.date(),
-  threads: coerceArray(forumThread).optional(),
+  lastpostdate: z.coerce.date(),
+  threads: z.object({ thread: coerceArray(forumThread) }).optional(),
 });
 
 export const article = z.object({
@@ -281,14 +281,14 @@ export const article = z.object({
   id: z.number(),
   username: z.string(),
   link: z.url(),
-  postdate: z.date(),
-  editdate: z.date(),
+  postdate: z.coerce.date(),
+  editdate: z.coerce.date(),
   numedits: z.number(),
 });
 
 export const thread = z.object({
   subject: z.string(),
-  articles: coerceArray(article),
+  articles: z.object({ article: coerceArray(article) }),
   id: z.number(),
   link: z.url(),
 });

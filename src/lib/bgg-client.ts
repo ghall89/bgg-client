@@ -59,8 +59,6 @@ export class BoardGameGeekClient {
       'Error fetching data from BGG API',
     );
 
-    if (!schema) return response as T;
-
     const validatedResponse = schema.parse(response) as T;
 
     return validatedResponse;
