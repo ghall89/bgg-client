@@ -1,25 +1,25 @@
-import { z } from 'zod';
+import type { z } from 'zod';
 
-import {
-  article,
-  collectionitem,
-  comment,
-  family,
-  forum,
-  forumThread,
-  guild,
-  guildLocation,
-  guildMember,
-  hotItem,
-  linkItem,
-  pollItem,
-  pollResult,
-  searchResult,
-  thingDetails,
-  thread,
-  user,
-  userConnection,
-  userItem,
+import type {
+	article,
+	collectionitem,
+	comment,
+	family,
+	forum,
+	forumThread,
+	guild,
+	guildLocation,
+	guildMember,
+	hotItem,
+	linkItem,
+	pollItem,
+	pollResult,
+	searchResult,
+	thingDetails,
+	thread,
+	user,
+	userConnection,
+	userItem,
 } from '../schema';
 
 export type Article = z.infer<typeof article>;

@@ -1,25 +1,25 @@
-import { z } from 'zod';
+import type { z } from 'zod';
 
-import {
-  thingTypeEnum,
-  hotItemTypeEnum,
-  linkTypeEnum,
-  familyTypeEnum,
-  domainTypeEnum,
+import type {
+	domainTypeEnum,
+	familyTypeEnum,
+	hotItemTypeEnum,
+	linkTypeEnum,
+	thingTypeEnum,
 } from '../schema';
 
 export type Endpoint =
-  | 'collection'
-  | 'family'
-  | 'forum'
-  | 'forumlist'
-  | 'guild'
-  | 'hot'
-  | 'plays'
-  | 'search'
-  | 'thing'
-  | 'thread'
-  | 'user';
+	| 'collection'
+	| 'family'
+	| 'forum'
+	| 'forumlist'
+	| 'guild'
+	| 'hot'
+	| 'plays'
+	| 'search'
+	| 'thing'
+	| 'thread'
+	| 'user';
 
 export type ThingType = z.infer<typeof thingTypeEnum>;
 
