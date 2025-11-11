@@ -62,7 +62,7 @@ export class BoardGameGeekClient {
 
 		const result = schema.safeParse(response);
 
-		if (!result.success) {
+		if (result.error) {
 			throw new BggError(
 				`Validation failed on ${endpoint}`,
 				result.error.issues,

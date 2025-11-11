@@ -55,6 +55,7 @@ export const hotItemTypeEnum = z.enum([
 
 export const linkTypeEnum = z.enum([
 	'boardgamecategory',
+	'boardgamecompilation',
 	'boardgamemechanic',
 	'boardgamefamily',
 	'boardgameexpansion',
