@@ -130,4 +130,4 @@ Refer to the [BGG XML API2 docs](https://boardgamegeek.com/wiki/page/BGG_XML_API
 ## Dependencies
 
 - [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser)
-- [try-catcher-ts](https://github.com/ghall89/try-catcher-ts)
+- [zod](https://github.com/colinhacks/zod)
