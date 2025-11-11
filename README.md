@@ -114,9 +114,13 @@ Calls the "thread" endpoint to retrieve a forum "thread" by thread id.
 import { BoardGameGeekClient } from 'bgg-client';
 const bgg = new BoardGameGeekClient('your-api-key');
 
-const results = await bgg.search('Cascadia');
-const game = await bgg.thing('342942'); // Cascadia's BGG ID
-const hot = await bgg.hot();
+try {
+  const results = await bgg.search('Cascadia');
+  const game = await bgg.thing('342942'); // Cascadia's BGG ID
+  const hot = await bgg.hot();
+} catch {
+  // handle the error
+}
 ```
 
 ## Additional Info
