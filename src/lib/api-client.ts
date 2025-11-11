@@ -111,7 +111,8 @@ export class ApiClient {
 			}
 		}
 
-		return `https://${this.domain}.com/${this.endpoint}/${path}${pathArray.length > 0 && '?'}${pathArray.join('&')}`;
+		const queryString = pathArray.length > 0 ? `?${pathArray.join('&')}` : '';
+		return `https://${this.domain}.com/${this.endpoint}/${path}${queryString}`;
 	}
 
 	/**
