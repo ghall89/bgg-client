@@ -1,6 +1,4 @@
-import { tryCatch } from 'try-catcher-ts';
-import type { ZodArray, ZodObject } from 'zod';
-import { z } from 'zod';
+import { type ZodArray, type ZodObject, z } from 'zod';
 
 import { ApiClient } from './api-client';
 import {
@@ -9,6 +7,7 @@ import {
 	forum,
 	guild,
 	hotItem,
+	playLog,
 	searchResult,
 	thingDetails,
 	thread,
@@ -24,6 +23,7 @@ import type {
 	Guild,
 	HotItem,
 	HotItemType,
+	PlayLog,
 	SearchResult,
 	ThingDetails,
 	ThingType,
@@ -53,10 +53,11 @@ export class BoardGameGeekClient {
 		options: { [k: string]: any } = {},
 		schema: ZodObject | ZodArray,
 	): Promise<T> {
-		const response = await tryCatch(
-			() => this.api.getRequest(endpoint, options),
-			'Error fetching data from BGG API',
-		);
+		const response = await this.api.getRequest(endpoint, options);
+
+		if (process.env.LOG_BGG_RESPONSE) {
+			console.log(JSON.stringify(response, null, 2));
+		}
 
 		const validatedResponse = schema.parse(response) as T;
 
@@ -79,13 +80,18 @@ export class BoardGameGeekClient {
 			exact?: boolean;
 		},
 	): Promise<SearchResult[]> {
-		return (
-			this.request<SearchResult[]>(
-				'search',
-				{ query, ...options },
-				z.array(searchResult),
-			) ?? []
-		);
+		try {
+			return (
+				this.request<SearchResult[]>(
+					'search',
+					{ query, ...options },
+					z.array(searchResult),
+				) ?? []
+			);
+		} catch (err) {
+			console.error(err);
+			return [];
+		}
 	}
 
 	/**
@@ -115,12 +121,17 @@ export class BoardGameGeekClient {
 			pagesize?: number;
 			page?: number;
 		},
-	): Promise<ThingDetails | undefined> {
-		return this.request<ThingDetails>(
-			'thing',
-			{ id, ...options },
-			thingDetails,
-		);
+	): Promise<ThingDetails | null> {
+		try {
+			return this.request<ThingDetails>(
+				'thing',
+				{ id, ...options },
+				thingDetails,
+			);
+		} catch (err) {
+			console.error(err);
+			return null;
+		}
 	}
 
 	/**
@@ -130,8 +141,15 @@ export class BoardGameGeekClient {
 	 * @param options.type - The type or types of hot items to fetch (e.g., boardgame, boardgameperson).
 	 * @returns A promise that resolves to a list of hot items.
 	 */
-	async hot(options?: { type?: HotItemType | HotItemType[] }) {
-		return this.request<HotItem[]>('hot', options, z.array(hotItem));
+	async hot(options?: {
+		type?: HotItemType | HotItemType[];
+	}): Promise<HotItem[]> {
+		try {
+			return this.request<HotItem[]>('hot', options, z.array(hotItem));
+		} catch (err) {
+			console.error(err);
+			return [];
+		}
 	}
 
 	/**
@@ -145,8 +163,13 @@ export class BoardGameGeekClient {
 	async family(
 		id: number,
 		options?: { type: FamilyType | FamilyType[] },
-	): Promise<Family | undefined> {
-		return this.request<Family>('family', { id, ...options }, family);
+	): Promise<Family | null> {
+		try {
+			return this.request<Family>('family', { id, ...options }, family);
+		} catch (err) {
+			console.error(err);
+			return null;
+		}
 	}
 
 	/**
@@ -172,8 +195,13 @@ export class BoardGameGeekClient {
 			domain?: DomainType;
 			page?: number;
 		},
-	): Promise<User | undefined> {
-		return this.request<User>('user', { name, ...options }, user);
+	): Promise<User | null> {
+		try {
+			return this.request<User>('user', { name, ...options }, user);
+		} catch (err) {
+			console.error(err);
+			return null;
+		}
 	}
 
 	/**
@@ -193,8 +221,13 @@ export class BoardGameGeekClient {
 			sort?: 'username' | 'date';
 			page?: number;
 		},
-	): Promise<Guild | undefined> {
-		return this.request<Guild>('guild', { id, ...options }, guild);
+	): Promise<Guild | null> {
+		try {
+			return this.request<Guild>('guild', { id, ...options }, guild);
+		} catch (err) {
+			console.error(err);
+			return null;
+		}
 	}
 
 	/**
@@ -214,16 +247,21 @@ export class BoardGameGeekClient {
 			subtype?: ThingType | ThingType[];
 			page?: number;
 		},
-	) {
-		let dynamicOptions: object;
+	): Promise<PlayLog[]> {
+		try {
+			let dynamicOptions: object;
 
-		if (typeof id === 'number') {
-			dynamicOptions = { id, ...options };
-		} else {
-			dynamicOptions = { username: id, ...options };
+			if (typeof id === 'number') {
+				dynamicOptions = { id, ...options };
+			} else {
+				dynamicOptions = { username: id, ...options };
+			}
+
+			return this.request('plays', dynamicOptions, z.array(playLog));
+		} catch (err) {
+			console.error(err);
+			return [];
 		}
-
-		return this.request('guild', dynamicOptions, guild);
 	}
 
 	/**
@@ -296,14 +334,19 @@ export class BoardGameGeekClient {
 			modifiedsince?: Date;
 		},
 	): Promise<CollectionItem[]> {
-		return this.request<CollectionItem[]>(
-			'collection',
-			{
-				username,
-				...options,
-			},
-			collectionitem,
-		);
+		try {
+			return this.request<CollectionItem[]>(
+				'collection',
+				{
+					username,
+					...options,
+				},
+				z.array(collectionitem),
+			);
+		} catch (err) {
+			console.error(err);
+			return [];
+		}
 	}
 
 	/**
@@ -317,11 +360,16 @@ export class BoardGameGeekClient {
 		id: number,
 		options: { type?: 'thing' | 'family' } = { type: 'thing' },
 	): Promise<Forum[]> {
-		return this.request<Forum[]>(
-			'forumlist',
-			{ id, ...options },
-			z.array(forum),
-		);
+		try {
+			return this.request<Forum[]>(
+				'forumlist',
+				{ id, ...options },
+				z.array(forum),
+			);
+		} catch (err) {
+			console.error(err);
+			return [];
+		}
 	}
 
 	/**
@@ -331,8 +379,13 @@ export class BoardGameGeekClient {
 	 * @param options - Optional parameters for the request.
 	 * @param options.type - The type of entry in the database.
 	 */
-	async forum(id: number, options?: { page?: number }) {
-		return this.request('forum', { id, ...options }, forum);
+	async forum(id: number, options?: { page?: number }): Promise<Forum | null> {
+		try {
+			return this.request('forum', { id, ...options }, forum);
+		} catch (err) {
+			console.error(err);
+			return null;
+		}
 	}
 
 	/**
@@ -351,7 +404,12 @@ export class BoardGameGeekClient {
 			minarticledate?: Date;
 			count?: number;
 		},
-	): Promise<Thread> {
-		return this.request<Thread>('thread', { id, ...options }, thread);
+	): Promise<Thread | null> {
+		try {
+			return this.request<Thread>('thread', { id, ...options }, thread);
+		} catch (err) {
+			console.error(err);
+			return null;
+		}
 	}
 }

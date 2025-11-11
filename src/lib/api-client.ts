@@ -67,6 +67,10 @@ export class ApiClient {
 
 		const url = this.createUrlWithParams(path, options);
 
+		if (process.env.LOG_BGG_URL) {
+			console.log(url);
+		}
+
 		const response = await fetch(url, {
 			headers: {
 				Authorization: `Bearer ${this.apiKey}`,
@@ -127,6 +131,7 @@ export class ApiClient {
 			object?.guild ||
 			object?.forums?.forum ||
 			object?.forum ||
+			object?.plays?.play ||
 			object.thread;
 
 		return data as T;

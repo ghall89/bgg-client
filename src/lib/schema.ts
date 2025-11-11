@@ -156,9 +156,9 @@ export const collectionitem = z.object({
 		'#text': z.string(),
 		sortindex: z.number(),
 	}),
-	yearpublished: z.number(),
-	image: z.url(),
-	thumbnail: z.url(),
+	yearpublished: z.number().optional(),
+	image: z.url().optional(),
+	thumbnail: z.url().optional(),
 	status: z.object({
 		own: z.number(),
 		prevowned: z.number(),
@@ -168,7 +168,7 @@ export const collectionitem = z.object({
 		wanttobuy: z.number(),
 		wishlist: z.number(),
 		preordered: z.number(),
-		lastmodified: z.date(),
+		lastmodified: z.coerce.date(),
 	}),
 	numplays: z.number(),
 	objecttype: z.string(),
@@ -222,6 +222,25 @@ export const user = z.object({
 		.optional(),
 });
 
+export const playLog = z.object({
+	item: z.object({
+		subtypes: z.object({
+			subtype: coerceArray(
+				z.object({
+					value: thingTypeEnum,
+				}),
+			),
+		}),
+	}),
+	id: z.number(),
+	date: z.coerce.date(),
+	quantity: z.number(),
+	length: z.number(),
+	incomplete: z.number(),
+	nowinstats: z.number(),
+	location: z.coerce.string(),
+});
+
 export const guildLocation = z.object({
 	addr1: z.string(),
 	addr2: z.string(),
@@ -233,7 +252,7 @@ export const guildLocation = z.object({
 
 export const guildMember = z.object({
 	name: z.string(),
-	date: z.date(),
+	date: z.coerce.date(),
 });
 
 export const guild = z.object({
@@ -251,7 +270,7 @@ export const guild = z.object({
 		.optional(),
 	id: z.number(),
 	name: z.string(),
-	created: z.date(),
+	created: z.coerce.date(),
 });
 
 export const forumThread = z.object({

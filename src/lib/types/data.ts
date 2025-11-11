@@ -12,6 +12,7 @@ import type {
 	guildMember,
 	hotItem,
 	linkItem,
+	playLog,
 	pollItem,
 	pollResult,
 	searchResult,
@@ -33,6 +34,7 @@ export type GuildLocation = z.infer<typeof guildLocation>;
 export type GuildMember = z.infer<typeof guildMember>;
 export type HotItem = z.infer<typeof hotItem>;
 export type LinkItem = z.infer<typeof linkItem>;
+export type PlayLog = z.infer<typeof playLog>;
 export type PollItem = z.infer<typeof pollItem>;
 export type PollResult = z.infer<typeof pollResult>;
 export type SearchResult = z.infer<typeof searchResult>;
