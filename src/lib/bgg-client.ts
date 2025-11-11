@@ -1,6 +1,7 @@
-import { type ZodArray, type ZodObject, z } from 'zod';
+import { z } from 'zod';
 
 import { ApiClient } from './api-client';
+import { BggError } from './error';
 import {
 	collectionitem,
 	family,
@@ -51,7 +52,7 @@ export class BoardGameGeekClient {
 	private async request<T>(
 		endpoint: Endpoint,
 		options: { [k: string]: any } = {},
-		schema: ZodObject | ZodArray,
+		schema: z.ZodType<T>,
 	): Promise<T> {
 		const response = await this.api.getRequest(endpoint, options);
 
@@ -59,9 +60,15 @@ export class BoardGameGeekClient {
 			console.log(JSON.stringify(response, null, 2));
 		}
 
-		const validatedResponse = schema.parse(response) as T;
+		const result = schema.safeParse(response);
 
-		return validatedResponse;
+		if (!result.success) {
+			throw new BggError(
+				`Validation failed on ${endpoint}`,
+				result.error.issues,
+			);
+		}
+		return result.data;
 	}
 
 	/**
@@ -80,18 +87,13 @@ export class BoardGameGeekClient {
 			exact?: boolean;
 		},
 	): Promise<SearchResult[]> {
-		try {
-			return (
-				this.request<SearchResult[]>(
-					'search',
-					{ query, ...options },
-					z.array(searchResult),
-				) ?? []
-			);
-		} catch (err) {
-			console.error(err);
-			return [];
-		}
+		return (
+			this.request<SearchResult[]>(
+				'search',
+				{ query, ...options },
+				z.array(searchResult),
+			) ?? []
+		);
 	}
 
 	/**
@@ -121,17 +123,12 @@ export class BoardGameGeekClient {
 			pagesize?: number;
 			page?: number;
 		},
-	): Promise<ThingDetails | null> {
-		try {
-			return this.request<ThingDetails>(
-				'thing',
-				{ id, ...options },
-				thingDetails,
-			);
-		} catch (err) {
-			console.error(err);
-			return null;
-		}
+	): Promise<ThingDetails | undefined> {
+		return this.request<ThingDetails>(
+			'thing',
+			{ id, ...options },
+			thingDetails,
+		);
 	}
 
 	/**
@@ -144,12 +141,7 @@ export class BoardGameGeekClient {
 	async hot(options?: {
 		type?: HotItemType | HotItemType[];
 	}): Promise<HotItem[]> {
-		try {
-			return this.request<HotItem[]>('hot', options, z.array(hotItem));
-		} catch (err) {
-			console.error(err);
-			return [];
-		}
+		return this.request<HotItem[]>('hot', options, z.array(hotItem));
 	}
 
 	/**
@@ -163,13 +155,8 @@ export class BoardGameGeekClient {
 	async family(
 		id: number,
 		options?: { type: FamilyType | FamilyType[] },
-	): Promise<Family | null> {
-		try {
-			return this.request<Family>('family', { id, ...options }, family);
-		} catch (err) {
-			console.error(err);
-			return null;
-		}
+	): Promise<Family | undefined> {
+		return this.request<Family>('family', { id, ...options }, family);
 	}
 
 	/**
@@ -196,12 +183,7 @@ export class BoardGameGeekClient {
 			page?: number;
 		},
 	): Promise<User | null> {
-		try {
-			return this.request<User>('user', { name, ...options }, user);
-		} catch (err) {
-			console.error(err);
-			return null;
-		}
+		return this.request<User>('user', { name, ...options }, user);
 	}
 
 	/**
@@ -222,12 +204,7 @@ export class BoardGameGeekClient {
 			page?: number;
 		},
 	): Promise<Guild | null> {
-		try {
-			return this.request<Guild>('guild', { id, ...options }, guild);
-		} catch (err) {
-			console.error(err);
-			return null;
-		}
+		return this.request<Guild>('guild', { id, ...options }, guild);
 	}
 
 	/**
@@ -248,20 +225,15 @@ export class BoardGameGeekClient {
 			page?: number;
 		},
 	): Promise<PlayLog[]> {
-		try {
-			let dynamicOptions: object;
+		let dynamicOptions: object;
 
-			if (typeof id === 'number') {
-				dynamicOptions = { id, ...options };
-			} else {
-				dynamicOptions = { username: id, ...options };
-			}
-
-			return this.request('plays', dynamicOptions, z.array(playLog));
-		} catch (err) {
-			console.error(err);
-			return [];
+		if (typeof id === 'number') {
+			dynamicOptions = { id, ...options };
+		} else {
+			dynamicOptions = { username: id, ...options };
 		}
+
+		return this.request('plays', dynamicOptions, z.array(playLog));
 	}
 
 	/**
@@ -334,19 +306,14 @@ export class BoardGameGeekClient {
 			modifiedsince?: Date;
 		},
 	): Promise<CollectionItem[]> {
-		try {
-			return this.request<CollectionItem[]>(
-				'collection',
-				{
-					username,
-					...options,
-				},
-				z.array(collectionitem),
-			);
-		} catch (err) {
-			console.error(err);
-			return [];
-		}
+		return this.request<CollectionItem[]>(
+			'collection',
+			{
+				username,
+				...options,
+			},
+			z.array(collectionitem),
+		);
 	}
 
 	/**
@@ -360,16 +327,11 @@ export class BoardGameGeekClient {
 		id: number,
 		options: { type?: 'thing' | 'family' } = { type: 'thing' },
 	): Promise<Forum[]> {
-		try {
-			return this.request<Forum[]>(
-				'forumlist',
-				{ id, ...options },
-				z.array(forum),
-			);
-		} catch (err) {
-			console.error(err);
-			return [];
-		}
+		return this.request<Forum[]>(
+			'forumlist',
+			{ id, ...options },
+			z.array(forum),
+		);
 	}
 
 	/**
@@ -380,12 +342,7 @@ export class BoardGameGeekClient {
 	 * @param options.type - The type of entry in the database.
 	 */
 	async forum(id: number, options?: { page?: number }): Promise<Forum | null> {
-		try {
-			return this.request('forum', { id, ...options }, forum);
-		} catch (err) {
-			console.error(err);
-			return null;
-		}
+		return this.request('forum', { id, ...options }, forum);
 	}
 
 	/**
@@ -405,11 +362,6 @@ export class BoardGameGeekClient {
 			count?: number;
 		},
 	): Promise<Thread | null> {
-		try {
-			return this.request<Thread>('thread', { id, ...options }, thread);
-		} catch (err) {
-			console.error(err);
-			return null;
-		}
+		return this.request<Thread>('thread', { id, ...options }, thread);
 	}
 }

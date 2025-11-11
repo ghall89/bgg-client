@@ -4,24 +4,48 @@ import type {
 	article,
 	collectionitem,
 	comment,
+	domainTypeEnum,
 	family,
+	familyTypeEnum,
 	forum,
 	forumThread,
 	guild,
 	guildLocation,
 	guildMember,
 	hotItem,
+	hotItemTypeEnum,
 	linkItem,
+	linkTypeEnum,
 	playLog,
 	pollItem,
 	pollResult,
 	searchResult,
 	thingDetails,
+	thingTypeEnum,
 	thread,
 	user,
 	userConnection,
 	userItem,
-} from '../schema';
+} from './schema';
+
+export type Endpoint =
+	| 'collection'
+	| 'family'
+	| 'forum'
+	| 'forumlist'
+	| 'guild'
+	| 'hot'
+	| 'plays'
+	| 'search'
+	| 'thing'
+	| 'thread'
+	| 'user';
+
+export type DomainType = z.infer<typeof domainTypeEnum>;
+export type FamilyType = z.infer<typeof familyTypeEnum>;
+export type HotItemType = z.infer<typeof hotItemTypeEnum>;
+export type LinkType = z.infer<typeof linkTypeEnum>;
+export type ThingType = z.infer<typeof thingTypeEnum>;
 
 export type Article = z.infer<typeof article>;
 export type CollectionItem = z.infer<typeof collectionitem>;
