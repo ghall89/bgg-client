@@ -116,7 +116,7 @@ const bgg = new BoardGameGeekClient('your-api-key');
 
 try {
   const results = await bgg.search('Cascadia');
-  const game = await bgg.thing('342942'); // Cascadia's BGG ID
+  const game = await bgg.thing(342942); // Cascadia's BGG ID
   const hot = await bgg.hot();
 } catch {
   // handle the error
