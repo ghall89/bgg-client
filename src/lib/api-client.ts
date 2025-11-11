@@ -134,6 +134,15 @@ export class ApiClient {
 			object?.plays?.play ||
 			object.thread;
 
+		if (
+			!data &&
+			(object?.items?.total === 0 ||
+				object?.forums?.total === 0 ||
+				object?.plays?.total === 0)
+		) {
+			return [] as T;
+		}
+
 		return data as T;
 	}
 }

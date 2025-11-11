@@ -1,8 +1,9 @@
-import { z } from 'zod';
+import type { z } from 'zod';
 
 import { ApiClient } from './api-client';
 import { BggError } from './error';
 import {
+	coerceArray,
 	collectionitem,
 	family,
 	forum,
@@ -91,7 +92,7 @@ export class BoardGameGeekClient {
 			this.request<SearchResult[]>(
 				'search',
 				{ query, ...options },
-				z.array(searchResult),
+				coerceArray(searchResult),
 			) ?? []
 		);
 	}
@@ -141,7 +142,7 @@ export class BoardGameGeekClient {
 	async hot(options?: {
 		type?: HotItemType | HotItemType[];
 	}): Promise<HotItem[]> {
-		return this.request<HotItem[]>('hot', options, z.array(hotItem));
+		return this.request<HotItem[]>('hot', options, coerceArray(hotItem));
 	}
 
 	/**
@@ -233,7 +234,7 @@ export class BoardGameGeekClient {
 			dynamicOptions = { username: id, ...options };
 		}
 
-		return this.request('plays', dynamicOptions, z.array(playLog));
+		return this.request('plays', dynamicOptions, coerceArray(playLog));
 	}
 
 	/**
@@ -312,7 +313,7 @@ export class BoardGameGeekClient {
 				username,
 				...options,
 			},
-			z.array(collectionitem),
+			coerceArray(collectionitem),
 		);
 	}
 
@@ -330,7 +331,7 @@ export class BoardGameGeekClient {
 		return this.request<Forum[]>(
 			'forumlist',
 			{ id, ...options },
-			z.array(forum),
+			coerceArray(forum),
 		);
 	}
 
