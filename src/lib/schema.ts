@@ -61,6 +61,7 @@ export const linkTypeEnum = z.enum([
 	'boardgameexpansion',
 	'boardgameaccessory',
 	'boardgameimplementation',
+    "boardgameintegration",
 	'boardgamedesigner',
 	'boardgameartist',
 	'boardgamepublisher',
