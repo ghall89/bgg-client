@@ -1,3 +1,5 @@
+_Note: This project is now hosted on Codeberg: https://codeberg.org/ghalldev/bgg-client_
+
 # 🎲 bgg-client
 
 ![NPM Version](https://img.shields.io/npm/v/bgg-client)
